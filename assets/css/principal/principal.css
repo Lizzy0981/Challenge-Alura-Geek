@@ -1,9 +1,49 @@
 .principal {
-    background: var(--color-gris-suave);
+    background: var(--color-fondo-oscuro); /* Usamos la variable de color oscuro definida en global.css */
+    color: var(--color-texto-claro); /* Aseguramos que el texto sea legible en el fondo oscuro */
+    padding: 2rem 0; /* Añadimos un poco de padding para separar el contenido de los bordes */
+}
+
+/* Estilos para las tarjetas de producto */
+.producto-card {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente para las tarjetas */
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.producto-titulo {
+    color: var(--color-azul-suave);
+    font-weight: var(--font-semi-bold);
+}
+
+.producto-precio {
+    color: var(--color-azul-fuerte);
+    font-weight: var(--font-bold);
+}
+
+.ver-producto-btn {
+    background-color: var(--color-acento);
+    color: var(--color-texto-claro);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ver-producto-btn:hover {
+    background-color: var(--color-azul-fuerte);
 }
 
 @media only screen and (min-width: 1366px) {
     .principal {
-        padding: 0 0 4rem 0;
+        padding: 4rem 0; /* Aumentamos el padding en pantallas grandes */
     }
 }
