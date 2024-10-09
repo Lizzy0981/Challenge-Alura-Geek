@@ -2,10 +2,6 @@ import rutaRelativaCabeceraRodapie from "./rutaRelativaCabeceraRodapie.js";
 
 const ruta = rutaRelativaCabeceraRodapie();
 
-/**
- * Referencia:
- * https://www.freecodecamp.org/news/reusable-html-components-how-to-reuse-a-header-and-footer-on-a-website/
- */
 class Header extends HTMLElement {
     constructor() {
         super();
@@ -34,6 +30,28 @@ class Header extends HTMLElement {
                     </button>
                 </nav>
             </header>
+            <style>
+                .cabecera {
+                    background-color: #f0f0f0; /* Color gris claro para el encabezado */
+                    padding: 10px 0;
+                }
+                .cabecera__menu {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .cabecera__boton {
+                    color: #333; /* Color oscuro para el texto del botón para mejor contraste */
+                }
+                .cabecera__campo {
+                    background-color: #ffffff; /* Fondo blanco para el campo de búsqueda */
+                    border: 1px solid #ccc;
+                }
+                .cabecera__botonBuscarMovil, .cabecera__botonClose {
+                    background-color: transparent;
+                    border: none;
+                }
+            </style>
         `;
     }
 }
