@@ -1,49 +1,64 @@
+:root {
+    /* Añadimos nuevas variables de color */
+    --color-fondo-oscuro-elegante: #1e2a3a; /* Un azul oscuro profundo */
+    --color-fondo-tarjeta: #2c3e50; /* Un gris azulado para las tarjetas */
+    --color-acento-suave: #3498db; /* Un azul claro para acentos */
+    --color-texto-principal: #ecf0f1; /* Un blanco suave para el texto principal */
+    --color-texto-secundario: #bdc3c7; /* Un gris claro para texto secundario */
+}
+
 .principal {
-    background: var(--color-fondo-oscuro); /* Usamos la variable de color oscuro definida en global.css */
-    color: var(--color-texto-claro); /* Aseguramos que el texto sea legible en el fondo oscuro */
-    padding: 2rem 0; /* Añadimos un poco de padding para separar el contenido de los bordes */
+    background: var(--color-fondo-oscuro-elegante);
+    color: var(--color-texto-principal);
+    padding: 2rem 0;
 }
 
 /* Estilos para las tarjetas de producto */
 .producto-card {
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente para las tarjetas */
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    background-color: var(--color-fondo-tarjeta);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .producto-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .producto-titulo {
-    color: var(--color-azul-suave);
+    color: var(--color-texto-principal);
     font-weight: var(--font-semi-bold);
+    margin-bottom: 0.5rem;
 }
 
 .producto-precio {
-    color: var(--color-azul-fuerte);
+    color: var(--color-acento-suave);
     font-weight: var(--font-bold);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
 }
 
 .ver-producto-btn {
-    background-color: var(--color-acento);
-    color: var(--color-texto-claro);
-    padding: 0.5rem 1rem;
+    background-color: var(--color-acento-suave);
+    color: var(--color-texto-principal);
+    padding: 0.7rem 1.2rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: var(--font-medium);
 }
 
 .ver-producto-btn:hover {
-    background-color: var(--color-azul-fuerte);
+    background-color: #2980b9; /* Un tono más oscuro del color de acento */
+    transform: scale(1.05);
 }
 
 @media only screen and (min-width: 1366px) {
     .principal {
-        padding: 4rem 0; /* Aumentamos el padding en pantallas grandes */
+        padding: 4rem 0;
     }
 }
