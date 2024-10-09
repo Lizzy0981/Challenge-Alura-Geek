@@ -1,0 +1,23 @@
+.link {
+    color: var(--color-azul-fuerte);
+    font-weight: var(--font-bold);
+    font-size: var(--font-size-secundario-movil);
+    text-decoration: none;
+}
+
+.link--secundario {
+    color: var(--color-gris-fuerte);
+}
+
+.link--categoria {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+@media only screen and (min-width: 768px) {
+    .link {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,9 @@
+.principal {
+    background: var(--color-gris-suave);
+}
+
+@media only screen and (min-width: 1366px) {
+    .principal {
+        padding: 0 0 4rem 0;
+    }
+}
