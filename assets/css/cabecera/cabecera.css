@@ -1,6 +1,7 @@
 .cabecera {
     align-items: center;
-    background: var(--color-blanco);
+    background: rgba(10, 10, 42, 0.8);
+    backdrop-filter: blur(5px);
     display: flex;
     font-size: 0.875rem;
     font-weight: var(--font-regular);
@@ -8,19 +9,15 @@
     justify-content: space-between;
     padding: 1rem 2rem;
     position: fixed;
-    transition: transform 0.4s;
+    transition: transform 0.4s, background-color 0.3s;
     width: 100%;
-    z-index: 1;
+    z-index: 1000;
 }
 
-/*El menú subirá con un porcentaje de -100%, en el
-eje Y*/
 .scroll-down .cabecera {
     transform: translate3d(0, -100%, 0);
 }
 
-/*El menú se mantendrá en su posición
-original*/
 .scroll-up .cabecera {
     transform: none;
 }
@@ -33,9 +30,9 @@ original*/
 }
 
 .cabecera__logo {
-    /*Ocultar*/
     height: 1.75rem;
     width: 6.25rem;
+    filter: brightness(0) invert(1);
 }
 
 .cabecera__formulario,
@@ -52,9 +49,9 @@ original*/
 }
 
 .cabecera__iconoMovil {
-    /*Ocultar*/
     height: 1.1rem;
     width: 1.094rem;
+    filter: invert(1);
 }
 
 .cabecera__logoBuscador {
@@ -63,10 +60,6 @@ original*/
     width: fit-content;
 }
 
-/*Altera el ancho del container del
-logo y el buscador con
-JavaScript para dispositivos móviles en
-buscadorCelular.js en el evento click*/
 .cabecera__logoBuscador--ancho {
     width: 90%;
 }
@@ -78,41 +71,52 @@ buscadorCelular.js en el evento click*/
 }
 
 .cabecera__campo[type="text"] {
-    background: #f5f5f5;
+    background: rgba(245, 245, 245, 0.1);
     border: none;
-    border-radius: 1.25rem 1.25rem 1.25rem 1.25rem;
+    border-radius: 1.25rem;
     box-sizing: border-box;
+    color: var(--color-texto-claro);
     height: inherit;
     padding: .5rem 1rem;
     position: static;
     width: 100%;
-    /*240px*/
 }
 
 .cabecera__campo[type="text"]:focus {
     outline: none;
+    background: rgba(245, 245, 245, 0.2);
 }
 
-/*Posicionando icono de lupa en input de búsqueda para
-Firefox 19+ */
 .cabecera__campo[type="text"]::-moz-placeholder {
     background: url("../../img/iconos/lupa.svg") calc(100% - 1rem) center / 1.0656rem 1.0656rem no-repeat;
+    color: var(--color-gris-suave);
 }
 
-/* Posicionando icono de lupa en input de búsqueda para
-Chrome/Opera/Safari */
 .cabecera__campo[type="text"]::-webkit-input-placeholder {
     background: url("../../img/iconos/lupa.svg") right center / 1rem 1rem no-repeat;
+    color: var(--color-gris-suave);
 }
 
-/*Selector de clase usado en mostrarOcultarMenu.js en JavaScript para
-ocultar logo, botón Login y botón de lupa*/
 .cabecera__ocultarElemento {
     display: none;
 }
 
-@media only screen and (min-width: 768px) {
+.cabecera__boton {
+    background-color: var(--color-acento);
+    color: var(--color-texto-claro);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
+.cabecera__boton:hover {
+    background-color: var(--color-azul-fuerte);
+    transform: translateY(-2px);
+}
+
+@media only screen and (min-width: 768px) {
     .cabecera__botonBuscarMovil,
     .cabecera__iconoMovil {
         display: none;
@@ -132,11 +136,6 @@ ocultar logo, botón Login y botón de lupa*/
 
     .cabecera__campo[type="text"] {
         display: block;
-        /*240px*/
-    }
-
-    .cabecera__campo[type="text"]:focus {
-        outline: none;
     }
 
     .cabecera__boton {
@@ -155,7 +154,6 @@ ocultar logo, botón Login y botón de lupa*/
         height: inherit;
         margin: 0 auto;
         max-width: 71rem;
-        /*1136px*/
         padding: 1rem 0;
     }
 
