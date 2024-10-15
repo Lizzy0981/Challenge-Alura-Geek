@@ -5,7 +5,7 @@
       "precio": "499",
       "descripcion": "Consola de última generación de Sony",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/ps5.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/619BkvKW35L._AC_SL1500_.jpg",
       "id": "1"
     },
     {
@@ -13,7 +13,7 @@
       "precio": "499",
       "descripcion": "La consola más potente de Microsoft",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/xbox-series-x.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61JGKhqxHxL._AC_SL1500_.jpg",
       "id": "2"
     },
     {
@@ -21,7 +21,7 @@
       "precio": "299",
       "descripcion": "Consola híbrida de Nintendo",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/nintendo-switch.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61-PblYntsL._AC_SL1500_.jpg",
       "id": "3"
     },
     {
@@ -29,7 +29,7 @@
       "precio": "399",
       "descripcion": "Versión mejorada de la PS4",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/ps4-pro.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/715RBdgZtHL._AC_SL1500_.jpg",
       "id": "4"
     },
     {
@@ -37,7 +37,7 @@
       "precio": "399",
       "descripcion": "Consola 4K de Microsoft",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/xbox-one-x.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61HD7VRwfiL._AC_SL1500_.jpg",
       "id": "5"
     },
     {
@@ -45,7 +45,7 @@
       "precio": "199",
       "descripcion": "Versión portátil de la Nintendo Switch",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/switch-lite.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71qmF0FHj9L._AC_SL1500_.jpg",
       "id": "6"
     },
     {
@@ -53,7 +53,7 @@
       "precio": "79",
       "descripcion": "Consola retro con juegos clásicos",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/sega-genesis-mini.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81G9VZKkbmL._AC_SL1500_.jpg",
       "id": "7"
     },
     {
@@ -61,7 +61,7 @@
       "precio": "389",
       "descripcion": "Consola moderna con estilo retro",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/atari-vcs.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71dqjxW8ZdL._AC_SL1500_.jpg",
       "id": "8"
     },
     {
@@ -69,7 +69,7 @@
       "precio": "59",
       "descripcion": "Mini consola con juegos clásicos de PS1",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/ps-classic.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81GABwH43AL._AC_SL1500_.jpg",
       "id": "9"
     },
     {
@@ -77,7 +77,7 @@
       "precio": "59",
       "descripcion": "Versión miniatura de la NES original",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/nes-classic.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81s7B+Als-L._AC_SL1500_.jpg",
       "id": "10"
     },
     {
@@ -85,7 +85,7 @@
       "precio": "299",
       "descripcion": "Versión digital de la Xbox Series X",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/xbox-series-s.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71NBQ2a52CL._AC_SL1500_.jpg",
       "id": "11"
     },
     {
@@ -93,7 +93,7 @@
       "precio": "99",
       "descripcion": "Micro-consola para jugar juegos de PS Vita en TV",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/ps-tv.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61male9KPNL._AC_SL1000_.jpg",
       "id": "12"
     },
     {
@@ -101,7 +101,7 @@
       "precio": "249",
       "descripcion": "Nueva consola familiar de Intellivision",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/intellivision-amico.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71YDM7-tumL._AC_SL1500_.jpg",
       "id": "13"
     },
     {
@@ -109,7 +109,7 @@
       "precio": "79",
       "descripcion": "Versión mini de la Super Nintendo",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/snes-classic.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81xVM5oJ7LL._AC_SL1500_.jpg",
       "id": "14"
     },
     {
@@ -117,7 +117,7 @@
       "precio": "199",
       "descripcion": "Consola portátil para juegos retro",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/analogue-pocket.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61J6s79OqvL._AC_SL1500_.jpg",
       "id": "15"
     },
     {
@@ -125,7 +125,7 @@
       "precio": "179",
       "descripcion": "Consola portátil con manivela",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/playdate.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61O6qjitlyL._AC_SL1500_.jpg",
       "id": "16"
     },
     {
@@ -133,7 +133,7 @@
       "precio": "299",
       "descripcion": "Casco de realidad virtual todo en uno",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/oculus-quest-2.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/615YaAiA-ML._SL1500_.jpg",
       "id": "17"
     },
     {
@@ -141,7 +141,7 @@
       "precio": "449",
       "descripcion": "Sistema modular para juegos retro",
       "categoria": "consolas",
-      "imagen": "https://example.com/images/polymega.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61J5k6zO-kL._AC_SL1000_.jpg",
       "id": "18"
     },
     {
@@ -149,7 +149,7 @@
       "precio": "49.99",
       "descripcion": "Figura de acción de Darth Vader de 30 cm",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/darth-vader-figure.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71VhOKxWjtL._AC_SL1500_.jpg",
       "id": "19"
     },
     {
@@ -157,7 +157,7 @@
       "precio": "199.99",
       "descripcion": "Réplica del sable de luz de Luke Skywalker",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/luke-lightsaber.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61Kqbx1eO7L._AC_SL1500_.jpg",
       "id": "20"
     },
     {
@@ -165,7 +165,7 @@
       "precio": "79.99",
       "descripcion": "Casco de Stormtrooper tamaño real",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/stormtrooper-helmet.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61wh-UcyekL._AC_SL1500_.jpg",
       "id": "21"
     },
     {
@@ -173,7 +173,7 @@
       "precio": "159.99",
       "descripcion": "Set LEGO del Millennium Falcon",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/lego-millennium-falcon.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/91nkElq+oWL._AC_SL1500_.jpg",
       "id": "22"
     },
     {
@@ -181,7 +181,7 @@
       "precio": "24.99",
       "descripcion": "Póster de la película original de Star Wars",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/star-wars-poster.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61ZK1z-VeaL._AC_SL1000_.jpg",
       "id": "23"
     },
     {
@@ -189,7 +189,7 @@
       "precio": "29.99",
       "descripcion": "Figura de Baby Yoda de The Mandalorian",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/baby-yoda-figure.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71Pyj+9IPsL._AC_SL1500_.jpg",
       "id": "24"
     },
     {
@@ -197,7 +197,7 @@
       "precio": "69.99",
       "descripcion": "Dron con forma de TIE Fighter",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/tie-fighter-drone.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/718Tpr19hLL._AC_SL1500_.jpg",
       "id": "25"
     },
     {
@@ -205,7 +205,7 @@
       "precio": "49.99",
       "descripcion": "Juego de ajedrez temático de Star Wars",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/star-wars-chess.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/91RnDxYEWDL._AC_SL1500_.jpg",
       "id": "26"
     },
     {
@@ -213,7 +213,7 @@
       "precio": "19.99",
       "descripcion": "Taza con forma de R2-D2",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/r2d2-mug.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71ranIiwMWL._AC_SL1500_.jpg",
       "id": "27"
     },
     {
@@ -221,7 +221,7 @@
       "precio": "39.99",
       "descripcion": "Libro con arte conceptual de la saga",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/star-wars-artbook.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/91vwHMt+x7L._AC_SL1500_.jpg",
       "id": "28"
     },
     {
@@ -229,7 +229,7 @@
       "precio": "39.99",
       "descripcion": "Figura de acción de Chewbacca",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/chewbacca-figure.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71JG+tpBPEL._AC_SL1500_.jpg",
       "id": "29"
     },
     {
@@ -237,7 +237,7 @@
       "precio": "59.99",
       "descripcion": "Máscara de Kylo Ren con modulador de voz",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/kylo-ren-mask.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71nL9t1wIFL._AC_SL1500_.jpg",
       "id": "30"
     },
     {
@@ -245,7 +245,7 @@
       "precio": "79.99",
       "descripcion": "Modelo a escala de X-Wing con control remoto",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/xwing-rc.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71uoHJDRukL._AC_SL1500_.jpg",
       "id": "31"
     },
     {
@@ -253,7 +253,7 @@
       "precio": "24.99",
       "descripcion": "Cojín decorativo con forma de Yoda",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/yoda-pillow.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81mryBMdlfL._AC_SL1500_.jpg",
       "id": "32"
     },
     {
@@ -261,7 +261,7 @@
       "precio": "14.99",
       "descripcion": "Juego de cartas coleccionables de Star Wars",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/star-wars-destiny.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/91vqgM70Z+L._AC_SL1500_.jpg",
       "id": "33"
     },
     {
@@ -269,7 +269,7 @@
       "precio": "34.99",
       "descripcion": "Reloj de pulsera con diseño de BB-8",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/bb8-watch.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61OU+LKuUbL._AC_UX679_.jpg",
       "id": "34"
     },
     {
@@ -277,7 +277,7 @@
       "precio": "54.99",
       "descripcion": "Sudadera con diseño inspirado en Boba Fett",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/boba-fett-hoodie.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71Z7QIBTJML._AC_UX679_.jpg",
       "id": "35"
     },
     {
@@ -285,7 +285,7 @@
       "precio": "14.99",
       "descripcion": "Figura Funko Pop de Ahsoka Tano",
       "categoria": "star-wars",
-      "imagen": "https://example.com/images/ahsoka-funko.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/51vf4JnfPqL._AC_SL1300_.jpg",
       "id": "36"
     },
     {
@@ -293,7 +293,7 @@
       "precio": "2399",
       "descripcion": "Laptop de alto rendimiento de Apple",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/macbook-pro-16.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61vFO3R5UNL._AC_SL1500_.jpg",
       "id": "37"
     },
     {
@@ -301,7 +301,7 @@
       "precio": "1799",
       "descripcion": "Laptop premium con pantalla InfinityEdge",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/dell-xps-15.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
       "id": "38"
     },
     {
@@ -309,7 +309,7 @@
       "precio": "1499",
       "descripcion": "Ultrabook empresarial ligero y duradero",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/thinkpad-x1-carbon.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71krmFgx5pL._AC_SL1500_.jpg",
       "id": "39"
     },
     {
@@ -317,7 +317,7 @@
       "precio": "1299",
       "descripcion": "Laptop convertible 2 en 1 de lujo",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/hp-spectre-x360.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81wWAfN369L._AC_SL1500_.jpg",
       "id": "40"
     },
     {
@@ -325,7 +325,7 @@
       "precio": "1449",
       "descripcion": "Laptop gaming potente y compacta",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/asus-rog-zephyrus-g14.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81gK08T6tYL._AC_SL1500_.jpg",
       "id": "41"
     },
     {
@@ -333,7 +333,7 @@
       "precio": "999",
       "descripcion": "Laptop elegante con pantalla táctil",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/surface-laptop-4.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71hz+qE9PWL._AC_SL1500_.jpg",
       "id": "42"
     },
     {
@@ -341,7 +341,7 @@
       "precio": "999",
       "descripcion": "Ultrabook ligero con gran autonomía",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/acer-swift-5.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71JWY9KSYZL._AC_SL1500_.jpg",
       "id": "43"
     },
     {
@@ -349,95 +349,87 @@
       "precio": "1699",
       "descripcion": "Laptop gaming de alta gama",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/razer-blade-15.jpg",
-      "id": "43"
+      "imagen": "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_SL1500_.jpg",
+      "id": "44"
     },
     {
       "nombre": "LG Gram 17",
       "precio": "1499",
       "descripcion": "Laptop ultraligera con pantalla grande",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/lg-gram-17.jpg",
-      "id": "44"
+      "imagen": "https://m.media-amazon.com/images/I/71RtZYKolbL._AC_SL1500_.jpg",
+      "id": "45"
     },
     {
       "nombre": "Huawei MateBook X Pro",
       "precio": "1399",
       "descripcion": "Laptop premium con pantalla 3K",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/huawei-matebook-x-pro.jpg",
-      "id": "45"
+      "imagen": "https://m.media-amazon.com/images/I/61eETOjPzPL._AC_SL1000_.jpg",
+      "id": "46"
     },
     {
       "nombre": "Alienware m15 R4",
       "precio": "2099",
       "descripcion": "Laptop gaming de alto rendimiento",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/alienware-m15-r4.jpg",
-      "id": "46"
+      "imagen": "https://m.media-amazon.com/images/I/61Z+v7KGSPL._AC_SL1000_.jpg",
+      "id": "47"
     },
     {
       "nombre": "Lenovo Yoga 9i",
       "precio": "1399",
       "descripcion": "Laptop convertible premium",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/lenovo-yoga-9i.jpg",
-      "id": "47"
+      "imagen": "https://m.media-amazon.com/images/I/81AbJXWCxXL._AC_SL1500_.jpg",
+      "id": "48"
     },
     {
       "nombre": "MSI GS66 Stealth",
       "precio": "1799",
       "descripcion": "Laptop gaming delgada y potente",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/msi-gs66-stealth.jpg",
-      "id": "48"
+      "imagen": "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+      "id": "49"
     },
     {
       "nombre": "Google Pixelbook Go",
       "precio": "649",
       "descripcion": "Chromebook premium y ligero",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/google-pixelbook-go.jpg",
-      "id": "49"
+      "imagen": "https://m.media-amazon.com/images/I/81RFGwJU3QL._AC_SL1500_.jpg",
+      "id": "50"
     },
     {
       "nombre": "Acer Predator Helios 300",
       "precio": "1199",
       "descripcion": "Laptop gaming de gama media",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/acer-predator-helios-300.jpg",
-      "id": "50"
+      "imagen": "https://m.media-amazon.com/images/I/71Bkk5ns8ZL._AC_SL1500_.jpg",
+      "id": "51"
     },
     {
       "nombre": "ASUS ZenBook Pro Duo",
       "precio": "2299",
       "descripcion": "Laptop con pantalla secundaria",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/asus-zenbook-pro-duo.jpg",
-      "id": "51"
+      "imagen": "https://m.media-amazon.com/images/I/81K9Es2DDFL._AC_SL1500_.jpg",
+      "id": "52"
     },
     {
       "nombre": "HP Envy x360",
       "precio": "799",
       "descripcion": "Laptop convertible asequible",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/hp-envy-x360.jpg",
-      "id": "52"
+      "imagen": "https://m.media-amazon.com/images/I/71jUX6ciCyL._AC_SL1500_.jpg",
+      "id": "53"
     },
     {
       "nombre": "Lenovo Legion 5",
       "precio": "999",
       "descripcion": "Laptop gaming de gama media",
       "categoria": "laptos",
-      "imagen": "https://example.com/images/lenovo-legion-5.jpg",
-      "id": "53"
-    },
-    {
-      "nombre": "Dell Inspiron 14",
-      "precio": "599",
-      "descripcion": "Laptop asequible para uso diario",
-      "categoria": "laptos",
-      "imagen": "https://example.com/images/dell-inspiron-14.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71FHcGAPevL._AC_SL1500_.jpg",
       "id": "54"
     },
     {
@@ -445,7 +437,7 @@
       "precio": "399",
       "descripcion": "Reloj inteligente de última generación de Apple",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/apple-watch-series-7.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71gg8mPlAuL._AC_SL1500_.jpg",
       "id": "55"
     },
     {
@@ -453,7 +445,7 @@
       "precio": "349",
       "descripcion": "Auriculares inalámbricos con cancelación de ruido",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/sony-wh-1000xm4.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
       "id": "56"
     },
     {
@@ -461,7 +453,7 @@
       "precio": "1999",
       "descripcion": "Cámara mirrorless full-frame profesional",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/sony-a7-iii.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/91rQ3XfEYzL._AC_SL1500_.jpg",
       "id": "57"
     },
     {
@@ -469,7 +461,7 @@
       "precio": "799",
       "descripcion": "Drone plegable con cámara 4K",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/dji-mavic-air-2.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61H6sByGqbL._AC_SL1500_.jpg",
       "id": "58"
     },
     {
@@ -477,7 +469,7 @@
       "precio": "99",
       "descripcion": "Altavoz inteligente con Alexa",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/amazon-echo-4th-gen.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61y4J2vTwFL._AC_SL1000_.jpg",
       "id": "59"
     },
     {
@@ -485,7 +477,7 @@
       "precio": "379",
       "descripcion": "Tableta gráfica profesional para diseñadores",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/wacom-intuos-pro.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/718piWM8GkL._AC_SL1500_.jpg",
       "id": "60"
     },
     {
@@ -493,7 +485,7 @@
       "precio": "269",
       "descripcion": "Sistema WiFi mesh para hogar",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/google-nest-wifi.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/51ySu55JzAL._AC_SL1500_.jpg",
       "id": "61"
     },
     {
@@ -501,7 +493,7 @@
       "precio": "199",
       "descripcion": "Teclado mecánico gaming de alta gama",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/corsair-k95-rgb-platinum.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71nmrSRQ3cL._AC_SL1500_.jpg",
       "id": "62"
     },
     {
@@ -509,7 +501,7 @@
       "precio": "699",
       "descripcion": "Monitor gaming 1440p de 165Hz",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/asus-rog-swift-pg279q.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81yxcmJ6kiL._AC_SL1500_.jpg",
       "id": "63"
     },
     {
@@ -517,7 +509,7 @@
       "precio": "269",
       "descripcion": "Impresora 3D de sobremesa asequible",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/creality-ender-3-v2.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71Z6-O+kZqL._AC_SL1500_.jpg",
       "id": "64"
     },
     {
@@ -525,7 +517,7 @@
       "precio": "119",
       "descripcion": "Disco duro externo portátil de gran capacidad",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/wd-my-passport-4tb.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/81WFWi9sKlL._AC_SL1500_.jpg",
       "id": "65"
     },
     {
@@ -533,7 +525,7 @@
       "precio": "79",
       "descripcion": "Ratón gaming con sensor HERO 25K",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/logitech-g502-hero.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61mpMH5TzkL._AC_SL1500_.jpg",
       "id": "66"
     },
     {
@@ -541,7 +533,7 @@
       "precio": "579",
       "descripcion": "Mini proyector portátil con Android TV",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/anker-nebula-capsule-ii.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71Tlkx0BRWL._AC_SL1500_.jpg",
       "id": "67"
     },
     {
@@ -549,7 +541,7 @@
       "precio": "179",
       "descripcion": "Pulsera de actividad avanzada con GPS",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/fitbit-charge-5.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61LEyiJtx5L._AC_SL1500_.jpg",
       "id": "68"
     },
     {
@@ -557,7 +549,7 @@
       "precio": "149",
       "descripcion": "Estación de carga para iPhone, Apple Watch y AirPods",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/belkin-3-in-1-wireless-charger.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61JJm6kTWFS._AC_SL1500_.jpg",
       "id": "69"
     },
     {
@@ -565,7 +557,7 @@
       "precio": "259",
       "descripcion": "Mochila versátil para equipos fotográficos y portátiles",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/peak-design-everyday-backpack.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71wPLzgZ8QL._AC_SL1500_.jpg",
       "id": "70"
     },
     {
@@ -573,7 +565,7 @@
       "precio": "39",
       "descripcion": "Tarjeta SD UHS-I de alta velocidad",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/sandisk-extreme-pro-128gb.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/61ao4RlOuCL._AC_SL1000_.jpg",
       "id": "71"
     },
     {
@@ -581,7 +573,7 @@
       "precio": "29",
       "descripcion": "Funda protectora para laptops de 13-15 pulgadas",
       "categoria": "diversos",
-      "imagen": "https://example.com/images/tomtoc-360-laptop-sleeve.jpg",
+      "imagen": "https://m.media-amazon.com/images/I/71DaWL6YMPL._AC_SL1500_.jpg",
       "id": "72"
     }
   ],
