@@ -178,18 +178,22 @@
 
 @keyframes pulse {
   0% {
-    transform: scale(1);
+      transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+      transform: scale(1.1);
   }
   100% {
-    transform: scale(1);
+      transform: scale(1);
   }
 }
 
+.social-icon i {
+  transition: all 0.3s ease;
+}
+
 .social-icon:hover i {
-  animation: pulse 0.5s ease-in-out;
+  animation: pulse 0.5s ease-in-out infinite;
 }
 
 /* TABLETS */
