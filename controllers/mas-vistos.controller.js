@@ -12,27 +12,31 @@ window.addEventListener('DOMContentLoaded', async () => {
 const renderProducts = async () => {
   const newDiv = document.createElement('div')
   const loading = `
-
   <div class="loader">
-  <div class="scanner">
-    <h1 class="scanner__loading">Loading...</h1>
+    <div class="scanner">
+      <h1 class="scanner__loading">Loading...</h1>
+    </div>
   </div>
-</div>
-  
   `
   newDiv.innerHTML = loading
   div.appendChild(newDiv)
+  
   try {
     const productList = await productService.getLimitProduct()
     div.replaceChildren()
-    productList.forEach(data => {
-      const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
-      div.appendChild(newLine)
-    })
+    if (productList && productList.length > 0) {
+      productList.forEach(data => {
+        const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
+        div.appendChild(newLine)
+      })
+    } else {
+      throw new Error('No se encontraron productos')
+    }
   } catch (error) {
+    console.error('Error al cargar productos:', error)
     Swal.fire({
       title: 'Hubo un error!!!',
-      text: 'Se produjo un error. Intente más tarde',
+      text: 'Se produjo un error al cargar los productos. Intente más tarde',
       icon: 'error',
       confirmButtonText: 'Continuar'
     }).then(() => {
