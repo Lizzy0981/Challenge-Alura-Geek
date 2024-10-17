@@ -1,0 +1,264 @@
+.footer {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.footer__contacto {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.footer__contacto_text {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.footer__contacto__title {
+  color: var(--color-white);
+  font-size: 1.9rem;
+  font-weight: var(--font-weight-title-link);
+  text-align: center;
+}
+
+.footer__contacto__paragraph {
+  color: var(--color-white);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-text);
+  line-height: 1;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.input-container, .textarea-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.input-container:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.textarea-container {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input, .textarea-input {
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--color-white);
+  padding: 1.375rem 0.5rem 0.5rem;
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.input {
+  height: 4rem;
+  width: 20rem;
+}
+
+.textarea-input {
+  width: 18.8rem;
+  min-height: 5rem;
+}
+
+.input:hover, .textarea-input:hover {
+  border-bottom: 3px solid #6643b5;
+}
+
+.input:focus, .textarea-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.input::placeholder, .textarea-input::placeholder {
+  visibility: hidden;
+}
+
+.input-label, .textarea-label {
+  position: absolute;
+  left: 0.5rem;
+  font-size: 1.2rem;
+  transition: all 0.25s;
+  color: var(--color-white);
+}
+
+.input-label {
+  top: 1.375rem;
+}
+
+.textarea-label {
+  top: 0.5rem;
+}
+
+.input:not(:placeholder-shown) + .input-label,
+.input:focus + .input-label,
+.textarea-input:not(:placeholder-shown) + .textarea-label,
+.textarea-input:focus + .textarea-label {
+  font-size: 0.875rem;
+  top: 0.25rem;
+  transition: all 0.25s;
+}
+
+/* FOOTER COPY */
+
+.footer__copy {
+  text-align: center;
+  padding: 1.2rem 0;
+  height: auto;
+  min-height: 4rem;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.footer__copy__text {
+  margin: 1rem 0;
+  color: var(--color-white);
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-text);
+}
+
+.social-icons {
+  margin-top: 1rem;
+}
+
+.social-icon {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+.social-icon.github:hover {
+  color: #24292e;
+}
+
+.social-icon.linkedin:hover {
+  color: #0077b5;
+}
+
+.social-icon.twitter:hover {
+  color: #1da1f2;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.social-icon i {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover i {
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+.btn__form {
+  background-color: #808080;
+  color: var(--color-white);
+  border: none;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards 0.6s;
+}
+
+.btn__form:hover {
+  background-color: #6e6e6e;
+  color: var(--color-white);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn__form:focus {
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+/* TABLETS */
+
+@media screen and (min-width: 768px) {
+  .footer__contacto {
+    flex-direction: row;
+  }
+
+  .footer__contacto_text {
+    width: 45%;
+  }
+  
+  .footer__contacto_text {
+    text-align: center;
+  }
+
+  .form {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn__form {
+    width: 100%;
+  }
+}
+
+/* PC */
+
+@media screen and (min-width: 1024px) {
+  .footer__contacto__title {
+    text-align: start;
+    font-size: 3.2rem;
+  }
+  
+  .footer__contacto_text {
+    text-align: start;
+  }
+
+  .input {
+    width: 30rem;
+  }
+
+  .textarea-input {
+    width: 29rem;
+  }
+}
