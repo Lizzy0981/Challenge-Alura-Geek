@@ -47,7 +47,20 @@ const updateProduct = (imagen, nombre, precio, categoria, descripcion, id) => {
 
 // Obtener una cantidad limitada de productos
 const getLimitProduct = () => {
-  return fetch(`${API_URL}/productos?_limit=4`).then(handleResponse);
+  console.log('Fetching limited products...');
+  return fetch(`${API_URL}/productos?_limit=4`)
+    .then(response => {
+      console.log('Response status:', response.status);
+      return handleResponse(response);
+    })
+    .then(data => {
+      console.log('Received data:', data);
+      return data;
+    })
+    .catch(error => {
+      console.error('Error in getLimitProduct:', error);
+      throw error;
+    });
 };
 
 export const productService = {
