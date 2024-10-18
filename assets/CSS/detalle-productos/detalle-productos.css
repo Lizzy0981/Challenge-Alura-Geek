@@ -69,7 +69,20 @@
 .productos-similares {
   padding-top: 3rem;
   padding-bottom: 5rem;
-  background: var(--color-light3);
+  background: url('../img/fondopagina.jpg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.productos-similares::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .productos-similares__title {
@@ -80,10 +93,17 @@
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .productos-similares__title:hover {
   transform: scale(1.05);
+}
+
+.productos__similares_cards {
+  position: relative;
+  z-index: 2;
 }
 
 /* TABLETS */
