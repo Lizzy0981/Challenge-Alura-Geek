@@ -1,56 +1,81 @@
 import { createLineUserView, loadProducts } from '../utils/productsList.js'
+import { productService } from '../service/product-service.js'
 
 const div = document.querySelector('[data-tipo="productCards"]')
-
 const searchInput = document.querySelector('[data-tipo="search"]')
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderProducts()
-})
-
-//  Función para mostrar todos los productos
-
-const renderProducts = async () => {
-  const newDiv = document.createElement('div')
-  const loading = `
-
-  <div class="loader">
-  <div class="scanner">
-    <h1 class="scanner__loading">Loading...</h1>
-  </div>
-</div>
+  const urlParams = new URLSearchParams(window.location.search);
+  const category = urlParams.get('category');
   
-  `
-  newDiv.innerHTML = loading
-  div.appendChild(newDiv)
+  if (category) {
+    renderProductsByCategory(category);
+  } else {
+    renderAllProducts();
+  }
+});
+
+const renderAllProducts = async () => {
   try {
-    const productList = await loadProducts()
-    div.replaceChildren()
-    productList.forEach(data => {
-      const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
-      div.appendChild(newLine)
-    })
+    await loadProducts('productCards');
   } catch (error) {
-    Swal.fire({
-      title: 'Hubo un error!!!',
-      text: 'Se produjo un error. Intente más tarde',
-      icon: 'error',
-      confirmButtonText: 'Continuar'
-    }).then(() => {
-      window.location.href = '../index.html'
-    })
+    handleError(error);
   }
 }
 
-// Función para realizar el filtrado de datos
+const renderProductsByCategory = async (category) => {
+  const newDiv = document.createElement('div')
+  const loading = `
+  <div class="loader">
+    <div class="scanner">
+      <h1 class="scanner__loading">Loading...</h1>
+    </div>
+  </div>
+  `
+  newDiv.innerHTML = loading
+  div.appendChild(newDiv)
 
+  try {
+    const allProducts = await productService.productList();
+    const filteredProducts = allProducts.filter(product => product.categoria.toLowerCase() === category.toLowerCase());
+    
+    div.innerHTML = '';
+    if (filteredProducts.length === 0) {
+      div.innerHTML = '<p>No se encontraron productos en esta categoría.</p>';
+    } else {
+      filteredProducts.forEach(data => {
+        const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
+        div.appendChild(newLine)
+      });
+    }
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+const handleError = (error) => {
+  console.error('Error:', error);
+  Swal.fire({
+    title: 'Hubo un error!!!',
+    text: 'Se produjo un error al cargar los productos. Intente más tarde',
+    icon: 'error',
+    confirmButtonText: 'Continuar'
+  }).then(() => {
+    window.location.href = '../index.html'
+  });
+}
+
+// Función para realizar el filtrado de datos
 searchInput.addEventListener('keyup', async () => {
-  const products = await loadProducts()
   const searchValue = searchInput.value.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase()
   try {
+    const products = await productService.productList();
     if (searchValue !== '' && searchValue !== null) {
-      div.replaceChildren()
-      const newProducts = products.filter(product => product.nombre.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().includes(searchValue))
+      div.innerHTML = '';
+      const newProducts = products.filter(product => 
+        product.nombre.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().includes(searchValue) ||
+        product.categoria.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().includes(searchValue)
+      )
       if (newProducts.length === 0) {
         Swal.fire({
           title: 'No se encontró el producto',
@@ -64,17 +89,9 @@ searchInput.addEventListener('keyup', async () => {
         div.appendChild(line)
       })
     } else {
-      div.replaceChildren()
-      renderProducts()
+      renderAllProducts();
     }
   } catch (error) {
-    Swal.fire({
-      title: 'Hubo un error!!!',
-      text: 'Se produjo un error. Intente más tarde',
-      icon: 'error',
-      confirmButtonText: 'Continuar'
-    }).then(() => {
-      window.location.href = '../index.html'
-    })
+    handleError(error);
   }
 })
