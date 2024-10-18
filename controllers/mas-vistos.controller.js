@@ -6,6 +6,7 @@ const div = document.querySelector('[data-tipo="productCards"]')
 // Función para mostrar los productos más vistos
 
 window.addEventListener('DOMContentLoaded', async () => {
+  console.log('DOM loaded, starting renderProducts')
   renderProducts()
 })
 
@@ -22,7 +23,9 @@ const renderProducts = async () => {
   div.appendChild(newDiv)
   
   try {
+    console.log('Fetching products...')
     const productList = await productService.getLimitProduct()
+    console.log('Products received:', productList)
     div.replaceChildren()
     if (productList && productList.length > 0) {
       productList.forEach(data => {
