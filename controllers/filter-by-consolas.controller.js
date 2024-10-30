@@ -8,8 +8,7 @@ const searchInput = document.querySelector('[data-tipo="search"]')
 const loadProductsFilter = async () => {
   try {
     const products = await productService.productList();
-    const category = products.filter(data => data.categoria === 'consolas');
-    return category;
+    return products.filter(data => data.categoria === 'consolas');
   } catch (error) {
     console.error('Error al cargar productos:', error);
     throw error;
@@ -19,6 +18,8 @@ const loadProductsFilter = async () => {
 window.addEventListener('DOMContentLoaded', () => {
   renderProducts();
 })
+
+// El resto del código permanece igual...
 
 // Función para mostrar los productos filtrados
 const renderProducts = async () => {
