@@ -2,8 +2,14 @@ import { productService } from '../service/product-service.js';
 
 // Función para tomar todos los productos
 export const loadProducts = async (containerId) => {
-  const container = document.getElementById(containerId);
-  
+  // Modificado para usar querySelector con data-tipo
+  const container = document.querySelector(`[data-tipo="${containerId}"]`);
+
+  if (!container) {
+    console.error('Contenedor no encontrado:', containerId);
+    throw new Error('Contenedor no encontrado');
+  }
+
   // Mostrar el loader
   container.innerHTML = `
     <div class="loader">
@@ -15,7 +21,12 @@ export const loadProducts = async (containerId) => {
 
   try {
     const products = await productService.productList();
-    
+
+    if (!products || products.length === 0) {
+      container.innerHTML = '<p>No hay productos disponibles.</p>';
+      return [];
+    }
+
     // Ocultar el loader y mostrar los productos
     container.innerHTML = '';
     products.forEach(product => {
