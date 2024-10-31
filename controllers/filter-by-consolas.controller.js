@@ -9,7 +9,7 @@ const loadProductsFilter = async () => {
   try {
     const allProducts = await productService.productList();
     const category = allProducts.filter(data => data.categoria === 'consolas');
-    console.log('Productos de consolas encontrados:', category); // Para debugging
+    console.log('Productos de consolas encontrados:', category); // Mantenemos el log para debugging
     return category;
   } catch (error) {
     console.error('Error al cargar productos:', error);
@@ -17,63 +17,36 @@ const loadProductsFilter = async () => {
   }
 }
 
-// Función para mostrar los productos filtrados
-const renderProducts = async () => {
+// Componente de loading
+const createLoadingElement = () => {
   const newDiv = document.createElement('div')
-  const loading = `
+  newDiv.innerHTML = `
     <div class="loader">
       <div class="scanner">
         <h1 class="scanner__loading">Loading...</h1>
       </div>
     </div>
   `
-  newDiv.innerHTML = loading
-  div.appendChild(newDiv)
-
-  try {
-    const consolas = await loadProductsFilter()
-    div.innerHTML = '';
-    
-    if (consolas.length === 0) {
-      div.innerHTML = '<p>No hay productos en la categoría consolas.</p>';
-      return;
-    }
-
-    consolas.forEach(data => {
-      const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
-      div.appendChild(newLine)
-    })
-  } catch (error) {
-    console.error('Error al renderizar:', error);
-    Swal.fire({
-      title: 'Hubo un error!!!',
-      text: 'Se produjo un error. Intente más tarde',
-      icon: 'error',
-      confirmButtonText: 'Continuar'
-    }).then(() => {
-      window.location.href = '../index.html'
-    })
-  }
+  return newDiv
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  renderProducts()
-})
-
-// El resto del código permanece igual...
+// Manejo de errores centralizado
+const handleError = (error, message = 'Se produjo un error. Intente más tarde') => {
+  console.error(error);
+  return Swal.fire({
+    title: 'Hubo un error!!!',
+    text: message,
+    icon: 'error',
+    confirmButtonText: 'Continuar'
+  }).then(() => {
+    window.location.href = '../index.html'
+  })
+}
 
 // Función para mostrar los productos filtrados
 const renderProducts = async () => {
-  const newDiv = document.createElement('div')
-  const loading = `
-    <div class="loader">
-      <div class="scanner">
-        <h1 class="scanner__loading">Loading...</h1>
-      </div>
-    </div>
-  `
-  newDiv.innerHTML = loading
-  div.appendChild(newDiv)
+  const loadingElement = createLoadingElement()
+  div.appendChild(loadingElement)
 
   try {
     const consolas = await loadProductsFilter()
@@ -81,7 +54,7 @@ const renderProducts = async () => {
     
     if (consolas.length === 0) {
       div.innerHTML = '<p>No hay productos en la categoría consolas.</p>'
-      return;
+      return
     }
 
     consolas.forEach(data => {
@@ -89,20 +62,18 @@ const renderProducts = async () => {
       div.appendChild(newLine)
     })
   } catch (error) {
-    console.error('Error al renderizar productos:', error);
-    Swal.fire({
-      title: 'Hubo un error!!!',
-      text: 'Se produjo un error. Intente más tarde',
-      icon: 'error',
-      confirmButtonText: 'Continuar'
-    }).then(() => {
-      window.location.href = '../index.html'
-    })
+    handleError(error)
   }
 }
 
+// Inicialización al cargar el DOM
+window.addEventListener('DOMContentLoaded', () => {
+  renderProducts()
+})
+
 // Función para filtrar y mostrar la búsqueda dentro de una categoría
 searchInput.addEventListener('keyup', async () => {
+  // Mantenemos exactamente la misma lógica de sanitización del input
   const searchValue = searchInput.value.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase()
   
   try {
@@ -115,7 +86,7 @@ searchInput.addEventListener('keyup', async () => {
       )
       
       if (filterCategories.length === 0) {
-        Swal.fire({
+        await Swal.fire({
           title: 'No se encontró el producto',
           text: 'El producto que busca no se encuentra',
           icon: 'error',
@@ -129,17 +100,9 @@ searchInput.addEventListener('keyup', async () => {
       })
     } else {
       div.replaceChildren()
-      renderProducts()
+      await renderProducts()
     }
   } catch (error) {
-    console.error('Error en la búsqueda:', error);
-    Swal.fire({
-      title: 'Hubo un error!!!',
-      text: 'Se produjo un error. Intente más tarde',
-      icon: 'error',
-      confirmButtonText: 'Continuar'
-    }).then(() => {
-      window.location.href = '../index.html'
-    })
+    handleError(error, 'Error en la búsqueda. Intente más tarde')
   }
 })
