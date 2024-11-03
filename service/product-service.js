@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:3001';
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://alurageek-api-odin.onrender.com'
+  : 'http://localhost:3001';
 
 const handleResponse = async (response) => {
   if (!response.ok) {
