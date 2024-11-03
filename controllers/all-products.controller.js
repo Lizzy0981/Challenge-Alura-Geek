@@ -1,5 +1,5 @@
-import { createLineUserView, loadProducts } from '../utils/productsList.js'
 import { productService } from '../service/product-service.js'
+import { createLineUserView } from '../utils/productsList.js'
 
 const div = document.querySelector('[data-tipo="productCards"]')
 const searchInput = document.querySelector('[data-tipo="search"]')
@@ -7,7 +7,7 @@ const searchInput = document.querySelector('[data-tipo="search"]')
 window.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const category = urlParams.get('category');
-  
+
   if (category) {
     renderProductsByCategory(category);
   } else {
@@ -16,38 +16,28 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 const renderAllProducts = async () => {
-  try {
-    await loadProducts('productCards');
-  } catch (error) {
-    handleError(error);
-  }
-}
-
-const renderProductsByCategory = async (category) => {
-  const newDiv = document.createElement('div')
   const loading = `
-  <div class="loader">
-    <div class="scanner">
-      <h1 class="scanner__loading">Loading...</h1>
+    <div class="loader">
+      <div class="scanner">
+        <h1 class="scanner__loading">Loading...</h1>
+      </div>
     </div>
-  </div>
   `
-  newDiv.innerHTML = loading
-  div.appendChild(newDiv)
+  div.innerHTML = loading;
 
   try {
-    const allProducts = await productService.productList();
-    const filteredProducts = allProducts.filter(product => product.categoria.toLowerCase() === category.toLowerCase());
-    
+    const products = await productService.productList();
     div.innerHTML = '';
-    if (filteredProducts.length === 0) {
-      div.innerHTML = '<p>No se encontraron productos en esta categoría.</p>';
-    } else {
-      filteredProducts.forEach(data => {
-        const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
-        div.appendChild(newLine)
-      });
+
+    if (!products || products.length === 0) {
+      div.innerHTML = '<p>No hay productos disponibles.</p>';
+      return;
     }
+
+    products.forEach(data => {
+      const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
+      div.appendChild(newLine)
+    });
   } catch (error) {
     handleError(error);
   }
