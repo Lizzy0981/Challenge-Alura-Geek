@@ -26,14 +26,14 @@ if (textareaDescripcion) {
 
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  // Buscar el contenedor por el atributo data-tipo
   const productContainer = document.querySelector('[data-tipo="productCards"]');
   
   if (productContainer) {
-    // Obtener la categoría basada en la URL actual
     const currentPath = window.location.pathname;
     let categoria = null;
     
+    console.log('Path actual:', currentPath); // Log para ver la URL actual
+
     if (currentPath.includes('diversos.html')) {
       categoria = 'diversos';
     } else if (currentPath.includes('consolas.html')) {
@@ -43,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (currentPath.includes('laptos.html')) {
       categoria = 'laptos';
     }
+
+    console.log('Categoría detectada:', categoria); // Log para ver qué categoría se detectó
     
-    // Cargar productos con la categoría correspondiente
     loadProducts('productCards', categoria);
   }
 });
