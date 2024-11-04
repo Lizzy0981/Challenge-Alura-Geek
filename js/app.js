@@ -26,8 +26,25 @@ if (textareaDescripcion) {
 
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  const productContainer = document.getElementById('test');
+  // Buscar el contenedor por el atributo data-tipo
+  const productContainer = document.querySelector('[data-tipo="productCards"]');
+  
   if (productContainer) {
-    loadProducts('test');
+    // Obtener la categoría basada en la URL actual
+    const currentPath = window.location.pathname;
+    let categoria = null;
+    
+    if (currentPath.includes('diversos.html')) {
+      categoria = 'diversos';
+    } else if (currentPath.includes('consolas.html')) {
+      categoria = 'consolas';
+    } else if (currentPath.includes('star-wars.html')) {
+      categoria = 'star-wars';
+    } else if (currentPath.includes('laptos.html')) {
+      categoria = 'laptos';
+    }
+    
+    // Cargar productos con la categoría correspondiente
+    loadProducts('productCards', categoria);
   }
 });
