@@ -18,15 +18,15 @@ export const loadProducts = async (containerId, categoria = null) => {
   `;
 
   try {
-    let products = await productService.productList();
+    let products;
     
-    // Filtrar por categoría si se especifica una
     if (categoria) {
-      console.log('Filtrando por categoría:', categoria);
-      products = products.filter(product => 
-        product.categoria.toLowerCase() === categoria.toLowerCase()
-      );
-      console.log('Productos filtrados:', products);
+      // Si hay categoría, usar getProductsByCategory
+      console.log('Cargando productos de categoría:', categoria);
+      products = await productService.getProductsByCategory(categoria);
+    } else {
+      // Si no hay categoría, traer todos los productos
+      products = await productService.productList();
     }
 
     if (!products || products.length === 0) {
