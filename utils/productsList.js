@@ -1,8 +1,6 @@
 import { productService } from '../service/product-service.js';
 
-// Función para tomar todos los productos
-export const loadProducts = async (containerId) => {
-  // Modificado para usar querySelector con data-tipo
+export const loadProducts = async (containerId, categoria = null) => {
   const container = document.querySelector(`[data-tipo="${containerId}"]`);
 
   if (!container) {
@@ -20,10 +18,19 @@ export const loadProducts = async (containerId) => {
   `;
 
   try {
-    const products = await productService.productList();
+    let products = await productService.productList();
+    
+    // Filtrar por categoría si se especifica una
+    if (categoria) {
+      console.log('Filtrando por categoría:', categoria);
+      products = products.filter(product => 
+        product.categoria.toLowerCase() === categoria.toLowerCase()
+      );
+      console.log('Productos filtrados:', products);
+    }
 
     if (!products || products.length === 0) {
-      container.innerHTML = '<p>No hay productos disponibles.</p>';
+      container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
       return [];
     }
 
