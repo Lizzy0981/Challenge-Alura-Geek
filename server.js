@@ -7,7 +7,10 @@ const cors = require('cors');
 const port = process.env.PORT || 3001;
 
 server.use(cors({
-  origin: '*' // En producción, deberías especificar tu dominio de Netlify
+  origin: [
+    'https://glowing-bublanina-3f0328.netlify.app',
+    'http://localhost:3000'
+  ]
 }));
 server.use(middlewares);
 server.use(router);
