@@ -1,5 +1,5 @@
 import { validaInput, validaText } from './validaciones.js';
-import { loadProducts } from './productsList.js';
+import { loadProducts } from '../utils/productsList.js';
 
 // Seleccionando los inputs y los textareas
 const inputs = document.querySelectorAll('.input, .input__inicio, .input__agregar');
