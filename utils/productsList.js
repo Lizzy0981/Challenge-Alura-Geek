@@ -1,8 +1,9 @@
 import { productService } from '../service/product-service.js';
 
 export const loadProducts = async (containerId, categoria = null) => {
-  const container = document.querySelector(`[data-tipo="${containerId}"]`);
+  console.log('LoadProducts llamado con:', { containerId, categoria }); // Log para ver qué parámetros recibe
 
+  const container = document.querySelector(`[data-tipo="${containerId}"]`);
   if (!container) {
     console.error('Contenedor no encontrado:', containerId);
     throw new Error('Contenedor no encontrado');
@@ -21,13 +22,30 @@ export const loadProducts = async (containerId, categoria = null) => {
     let products;
     
     if (categoria) {
-      // Si hay categoría, usar getProductsByCategory
-      console.log('Cargando productos de categoría:', categoria);
+      console.log('Intentando cargar productos de categoría:', categoria); // Log antes de la petición
       products = await productService.getProductsByCategory(categoria);
+      console.log('Productos recibidos para categoría:', products); // Log después de la petición
     } else {
-      // Si no hay categoría, traer todos los productos
+      console.log('Cargando todos los productos'); // Log para la carga general
       products = await productService.productList();
     }
+
+    // Verificar los productos antes de mostrarlos
+    console.log('Productos antes de filtrar:', products);
+
+    // Filtrar explícitamente por categoría
+    if (categoria) {
+      products = products.filter(product => {
+        console.log('Comparando:', {
+          productCategoria: product.categoria,
+          categoriaSeleccionada: categoria,
+          coincide: product.categoria.toLowerCase() === categoria.toLowerCase()
+        });
+        return product.categoria.toLowerCase() === categoria.toLowerCase();
+      });
+    }
+
+    console.log('Productos después de filtrar:', products); // Log después del filtrado
 
     if (!products || products.length === 0) {
       container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
@@ -42,7 +60,7 @@ export const loadProducts = async (containerId, categoria = null) => {
     });
     return products;
   } catch (error) {
-    console.error('Error al cargar los productos:', error);
+    console.error('Error detallado al cargar los productos:', error);
     container.innerHTML = '<p>Error al cargar los productos. Por favor, intente nuevamente.</p>';
     throw error;
   }
