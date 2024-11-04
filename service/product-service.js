@@ -27,7 +27,7 @@ const getProductsByCategory = (categoria) => {
   return fetch(`${API_URL}/productos?categoria=${categoria}`)
     .then(handleResponse)
     .catch(error => {
-      console.error('Error en getProductsByCategory:', error);
+      console.error('Error fetching by category:', error);
       throw error;
     });
 };
