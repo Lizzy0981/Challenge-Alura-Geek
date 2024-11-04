@@ -16,12 +16,23 @@ const productList = () => {
   return fetch(`${API_URL}/productos`)
     .then(handleResponse)
     .catch(error => {
-      console.error('Error fetching products:', error);
+      console.error('Error en productList:', error);
       throw error;
     });
 };
 
-// El resto de tus funciones se mantienen igual
+// Obtener productos por categoría
+const getProductsByCategory = (categoria) => {
+  console.log('Fetching products by category:', categoria);
+  return fetch(`${API_URL}/productos?categoria=${categoria}`)
+    .then(handleResponse)
+    .catch(error => {
+      console.error('Error en getProductsByCategory:', error);
+      throw error;
+    });
+};
+
+// Crear un producto
 const createProduct = (imagen, nombre, precio, categoria, descripcion) => {
   return fetch(`${API_URL}/productos`, {
     method: 'POST',
@@ -32,16 +43,19 @@ const createProduct = (imagen, nombre, precio, categoria, descripcion) => {
   }).then(handleResponse);
 };
 
+// Eliminar un producto
 const deleteProduct = (id) => {
   return fetch(`${API_URL}/productos/${id}`, {
     method: 'DELETE'
   }).then(handleResponse);
 };
 
+// Obtener el detalle de un producto
 const productDetail = (id) => {
   return fetch(`${API_URL}/productos/${id}`).then(handleResponse);
 };
 
+// Actualizar un producto
 const updateProduct = (imagen, nombre, precio, categoria, descripcion, id) => {
   return fetch(`${API_URL}/productos/${id}`, {
     method: 'PUT',
@@ -52,15 +66,13 @@ const updateProduct = (imagen, nombre, precio, categoria, descripcion, id) => {
   }).then(handleResponse);
 };
 
+// Obtener productos limitados
 const getLimitProduct = () => {
   console.log('Fetching limited products...');
   return fetch(`${API_URL}/productos?_limit=4`)
-    .then(response => {
-      console.log('Response status:', response.status);
-      return handleResponse(response);
-    })
+    .then(handleResponse)
     .then(data => {
-      console.log('Received data:', data);
+      console.log('Received limited products:', data);
       return data;
     })
     .catch(error => {
@@ -75,5 +87,6 @@ export const productService = {
   deleteProduct,
   productDetail,
   updateProduct,
-  getLimitProduct
+  getLimitProduct,
+  getProductsByCategory  
 };
