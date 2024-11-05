@@ -1,35 +1,38 @@
 const API_URL = 'https://alurageek-api-odin.onrender.com';
 
 const handleResponse = async (response) => {
-  console.log('Status:', response.status);
+  console.log('Response status:', response.status);
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    console.error('Error Response:', errorData);
-    throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    throw new Error(`HTTP error! status: ${response.status}`);
   }
   return response.json();
 };
 
 // Obtener todos los productos
-const productList = () => {
-  console.log('Fetching from:', `${API_URL}/productos`);
-  return fetch(`${API_URL}/productos`)
-    .then(handleResponse)
-    .catch(error => {
-      console.error('Error en productList:', error);
-      throw error;
-    });
+const productList = async () => {
+  try {
+    const response = await fetch(`${API_URL}/productos`);
+    return handleResponse(response);
+  } catch (error) {
+    console.error('Error en productList:', error);
+    throw error;
+  }
 };
 
-// Obtener productos por categoría
-const getProductsByCategory = (categoria) => {
-  console.log('Fetching products by category:', categoria);
-  return fetch(`${API_URL}/productos?categoria=${categoria}`)
-    .then(handleResponse)
-    .catch(error => {
-      console.error('Error fetching by category:', error);
-      throw error;
-    });
+// Nueva función específica para obtener productos por categoría
+const getProductsByCategory = async (categoria) => {
+  try {
+    console.log('Buscando productos de categoría:', categoria);
+    const allProducts = await productList();
+    const filteredProducts = allProducts.filter(product => 
+      product.categoria.toLowerCase() === categoria.toLowerCase()
+    );
+    console.log('Productos filtrados:', filteredProducts);
+    return filteredProducts;
+  } catch (error) {
+    console.error('Error en getProductsByCategory:', error);
+    throw error;
+  }
 };
 
 // Crear un producto
@@ -83,10 +86,10 @@ const getLimitProduct = () => {
 
 export const productService = {
   productList,
+  getProductsByCategory,
   createProduct,
   deleteProduct,
   productDetail,
   updateProduct,
-  getLimitProduct,
-  getProductsByCategory  
+  getLimitProduct
 };
