@@ -31,25 +31,32 @@ const showLoader = (container) => {
   container.innerHTML = `
     <div class="loader">
       <div class="scanner">
-        <h1 class="scanner__loading">Loading...</h1>
+        <h1 class="scanner__loading">Cargando productos...</h1>
       </div>
     </div>
   `;
 };
 
 const fetchProducts = async (categoria) => {
+  console.log('Iniciando fetchProducts con categoría:', categoria);
   let products;
   
   if (categoria) {
     console.log('Solicitando productos de categoría:', categoria);
     products = await productService.getProductsByCategory(categoria);
+    console.log(`Recibidos ${products.length} productos de la categoría ${categoria}`);
   } else {
     console.log('Solicitando todos los productos');
     products = await productService.productList();
   }
 
-  console.log('Productos recibidos:', products);
-  return products || [];
+  if (!products || products.length === 0) {
+    console.log('No se encontraron productos');
+    return [];
+  }
+
+  console.log('Productos obtenidos:', products);
+  return products;
 };
 
 const renderProducts = (container, products) => {
@@ -74,7 +81,7 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
       src="${imagen}"
       alt="${nombre}"
       class="mas-vistos__card__img"
-      onerror="this.src='path/to/fallback-image.jpg';"
+      onerror="this.src='../assets/img/producto-no-encontrado.png';"
     />
     <div class="mas-vistos__card__details">
       <h2 class="mas-vistos__card__name">${nombre}</h2>
@@ -87,12 +94,6 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
   `;
 
   line.innerHTML = content;
-
-  // Añadir una pequeña demora para permitir que las animaciones se apliquen
-  setTimeout(() => {
-    line.style.opacity = '1';
-    line.style.transform = 'translateY(0)';
-  }, 50);
 
   return line;
 };
