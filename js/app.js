@@ -24,32 +24,46 @@ if (textareaDescripcion) {
   addValidation(textareaDescripcion, validaText);
 }
 
-// Cargar productos cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
+// Función para determinar la categoría basada en la URL
+const getCategoriaFromUrl = () => {
+  const currentPath = window.location.pathname.toLowerCase();
+  console.log('Ruta actual:', currentPath);
+
+  if (currentPath.includes('/screens/diversos.html')) {
+    return 'diversos';
+  } else if (currentPath.includes('/screens/consolas.html')) {
+    return 'consolas';
+  } else if (currentPath.includes('/screens/star-wars.html')) {
+    return 'star-wars';
+  } else if (currentPath.includes('/screens/laptos.html')) {
+    return 'laptos';
+  }
+  return null;
+};
+
+// Función para inicializar la carga de productos
+const initializeProducts = async () => {
   const productContainer = document.querySelector('[data-tipo="productCards"]');
   
   if (productContainer) {
-    const currentPath = window.location.pathname.toLowerCase();
-    let categoria = null;
-    
-    console.log('Ruta actual:', currentPath);
-
-    if (currentPath.includes('/screens/diversos.html')) {
-      categoria = 'diversos';
-    } else if (currentPath.includes('/screens/consolas.html')) {
-      categoria = 'consolas';
-    } else if (currentPath.includes('/screens/star-wars.html')) {
-      categoria = 'star-wars';
-    } else if (currentPath.includes('/screens/laptos.html')) {
-      categoria = 'laptos';
-    }
-    
+    const categoria = getCategoriaFromUrl();
     console.log('Categoría detectada:', categoria);
-    
-    if (categoria) {
-      loadProducts('productCards', categoria);
-    } else {
-      loadProducts('productCards');
+
+    try {
+      if (categoria) {
+        await loadProducts('productCards', categoria);
+      } else {
+        await loadProducts('productCards');
+      }
+    } catch (error) {
+      console.error('Error al cargar productos:', error);
+      productContainer.innerHTML = '<p>Error al cargar los productos. Por favor, intente nuevamente.</p>';
     }
   }
+};
+
+// Cargar productos cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar la carga de productos
+  initializeProducts();
 });
