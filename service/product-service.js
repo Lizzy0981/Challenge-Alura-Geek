@@ -25,6 +25,7 @@ const productList = async () => {
 const getProductsByCategory = async (categoria) => {
   try {
     console.log('Buscando productos de categoría:', categoria);
+    // Primero obtenemos todos los productos
     const allProducts = await productList();
     
     // Filtrado en el cliente
