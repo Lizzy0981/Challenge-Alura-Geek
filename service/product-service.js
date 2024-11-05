@@ -1,18 +1,20 @@
 const API_URL = 'https://alurageek-api-odin.onrender.com';
 
 const handleResponse = async (response) => {
-  console.log('Response status:', response.status);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
-  return response.json();
+  const data = await response.json();
+  return data;
 };
 
 // Obtener todos los productos
 const productList = async () => {
   try {
     const response = await fetch(`${API_URL}/productos`);
-    return handleResponse(response);
+    const data = await handleResponse(response);
+    console.log('Productos obtenidos:', data);
+    return data;
   } catch (error) {
     console.error('Error en productList:', error);
     throw error;
@@ -23,18 +25,15 @@ const productList = async () => {
 const getProductsByCategory = async (categoria) => {
   try {
     console.log('Buscando productos de categoría:', categoria);
-    // Hacemos una petición directa con el filtro de categoría
-    const response = await fetch(`${API_URL}/productos?categoria=${categoria}`);
-    const products = await handleResponse(response);
+    const allProducts = await productList();
     
-    // Aseguramos que el filtrado sea caso-insensitivo y exacto
-    const filteredProducts = products.filter(product => 
-      product.categoria && product.categoria.toLowerCase() === categoria.toLowerCase()
+    // Filtrado en el cliente
+    const filteredProducts = allProducts.filter(product => 
+      product.categoria && 
+      product.categoria.toLowerCase().trim() === categoria.toLowerCase().trim()
     );
     
-    console.log('Productos filtrados:', filteredProducts);
-    console.log('Cantidad de productos encontrados:', filteredProducts.length);
-    
+    console.log(`Encontrados ${filteredProducts.length} productos en la categoría ${categoria}`);
     return filteredProducts;
   } catch (error) {
     console.error('Error en getProductsByCategory:', error);
@@ -43,52 +42,75 @@ const getProductsByCategory = async (categoria) => {
 };
 
 // Crear un producto
-const createProduct = (imagen, nombre, precio, categoria, descripcion) => {
-  return fetch(`${API_URL}/productos`, {
-    method: 'POST',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
-  }).then(handleResponse);
+const createProduct = async (imagen, nombre, precio, categoria, descripcion) => {
+  try {
+    const response = await fetch(`${API_URL}/productos`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
+    });
+    return handleResponse(response);
+  } catch (error) {
+    console.error('Error en createProduct:', error);
+    throw error;
+  }
 };
 
 // Eliminar un producto
-const deleteProduct = (id) => {
-  return fetch(`${API_URL}/productos/${id}`, {
-    method: 'DELETE'
-  }).then(handleResponse);
+const deleteProduct = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/productos/${id}`, {
+      method: 'DELETE'
+    });
+    return handleResponse(response);
+  } catch (error) {
+    console.error('Error en deleteProduct:', error);
+    throw error;
+  }
 };
 
 // Obtener el detalle de un producto
-const productDetail = (id) => {
-  return fetch(`${API_URL}/productos/${id}`).then(handleResponse);
+const productDetail = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/productos/${id}`);
+    return handleResponse(response);
+  } catch (error) {
+    console.error('Error en productDetail:', error);
+    throw error;
+  }
 };
 
 // Actualizar un producto
-const updateProduct = (imagen, nombre, precio, categoria, descripcion, id) => {
-  return fetch(`${API_URL}/productos/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
-  }).then(handleResponse);
+const updateProduct = async (imagen, nombre, precio, categoria, descripcion, id) => {
+  try {
+    const response = await fetch(`${API_URL}/productos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
+    });
+    return handleResponse(response);
+  } catch (error) {
+    console.error('Error en updateProduct:', error);
+    throw error;
+  }
 };
 
 // Obtener productos limitados
-const getLimitProduct = () => {
-  console.log('Fetching limited products...');
-  return fetch(`${API_URL}/productos?_limit=4`)
-    .then(handleResponse)
-    .then(data => {
-      console.log('Received limited products:', data);
-      return data;
-    })
-    .catch(error => {
-      console.error('Error in getLimitProduct:', error);
-      throw error;
-    });
+const getLimitProduct = async () => {
+  try {
+    console.log('Fetching limited products...');
+    const response = await fetch(`${API_URL}/productos?_limit=4`);
+    const data = await handleResponse(response);
+    console.log('Received limited products:', data);
+    return data;
+  } catch (error) {
+    console.error('Error in getLimitProduct:', error);
+    throw error;
+  }
 };
 
 export const productService = {
