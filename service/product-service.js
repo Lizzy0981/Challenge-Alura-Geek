@@ -24,16 +24,11 @@ const productList = () => {
 // Obtener productos por categoría
 const getProductsByCategory = async (categoria) => {
   try {
-    // Primero obtenemos todos los productos
-    const allProducts = await productList();
-    
-    // Filtramos por categoría
-    const filteredProducts = allProducts.filter(product => 
-      product.categoria.toLowerCase() === categoria.toLowerCase()
-    );
-    
-    console.log(`Encontrados ${filteredProducts.length} productos en categoría ${categoria}`);
-    return filteredProducts;
+    console.log('Buscando productos de categoría:', categoria);
+    const response = await fetch(`${API_URL}/productos?categoria=${categoria}`);
+    const products = await handleResponse(response);
+    console.log(`Encontrados ${products.length} productos en la categoría ${categoria}`);
+    return products;
   } catch (error) {
     console.error('Error en getProductsByCategory:', error);
     throw error;
