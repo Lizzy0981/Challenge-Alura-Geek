@@ -27,43 +27,67 @@ if (textareaDescripcion) {
 // Función para determinar la categoría basada en la URL
 const getCategoriaFromUrl = () => {
   const currentPath = window.location.pathname.toLowerCase();
-  console.log('Ruta actual:', currentPath);
+  const currentUrl = window.location.href.toLowerCase();
+  
+  console.log({
+    rutaCompleta: currentUrl,
+    pathname: currentPath
+  });
 
-  if (currentPath.includes('/screens/diversos.html')) {
-    return 'diversos';
-  } else if (currentPath.includes('/screens/consolas.html')) {
-    return 'consolas';
-  } else if (currentPath.includes('/screens/star-wars.html')) {
-    return 'star-wars';
-  } else if (currentPath.includes('/screens/laptos.html')) {
-    return 'laptos';
+  const categorias = {
+    diversos: 'diversos',
+    consolas: 'consolas',
+    'star-wars': 'star-wars',
+    laptos: 'laptos'
+  };
+
+  for (const [key, value] of Object.entries(categorias)) {
+    if (currentPath.includes(key)) {
+      console.log('Categoría encontrada:', value);
+      return value;
+    }
   }
+
+  console.log('No se encontró categoría específica');
   return null;
 };
 
 // Función para inicializar la carga de productos
 const initializeProducts = async () => {
-  const productContainer = document.querySelector('[data-tipo="productCards"]');
-  
-  if (productContainer) {
+  try {
+    const productContainer = document.querySelector('[data-tipo="productCards"]');
+    
+    if (!productContainer) {
+      console.log('No se encontró el contenedor de productos en esta página');
+      return;
+    }
+
     const categoria = getCategoriaFromUrl();
     console.log('Categoría detectada:', categoria);
 
-    try {
-      if (categoria) {
-        await loadProducts('productCards', categoria);
-      } else {
-        await loadProducts('productCards');
-      }
-    } catch (error) {
-      console.error('Error al cargar productos:', error);
-      productContainer.innerHTML = '<p>Error al cargar los productos. Por favor, intente nuevamente.</p>';
+    if (categoria) {
+      console.log('Cargando productos de categoría:', categoria);
+      await loadProducts('productCards', categoria);
+    } else {
+      console.log('Cargando todos los productos');
+      await loadProducts('productCards');
+    }
+  } catch (error) {
+    console.error('Error en la inicialización de productos:', error);
+    const container = document.querySelector('[data-tipo="productCards"]');
+    if (container) {
+      container.innerHTML = `
+        <div class="error">
+          <p>Error al cargar los productos. Por favor, intente nuevamente.</p>
+          <p>Detalles: ${error.message}</p>
+        </div>
+      `;
     }
   }
 };
 
-// Cargar productos cuando el DOM esté listo
+// Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  // Inicializar la carga de productos
+  console.log('DOM cargado - Iniciando aplicación');
   initializeProducts();
 });
