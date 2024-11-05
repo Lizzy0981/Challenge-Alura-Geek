@@ -3,53 +3,78 @@ import { productService } from '../service/product-service.js';
 export const loadProducts = async (containerId, categoria = null) => {
   console.log('LoadProducts llamado con:', { containerId, categoria });
   
-  const container = document.querySelector(`[data-tipo="${containerId}"]`);
-  if (!container) {
-    console.error('Contenedor no encontrado:', containerId);
-    return;
-  }
-
-  container.innerHTML = '<p>Cargando productos...</p>';
-
   try {
-    let products;
-    
-    if (categoria) {
-      console.log('Cargando productos de categoría:', categoria);
-      products = await productService.getProductsByCategory(categoria);
-    } else {
-      console.log('Cargando todos los productos');
-      products = await productService.productList();
+    // 1. Obtener el contenedor
+    const container = document.querySelector(`[data-tipo="${containerId}"]`);
+    if (!container) {
+      throw new Error(`Contenedor no encontrado: ${containerId}`);
     }
 
-    console.log('Productos recibidos:', products);
+    // 2. Mostrar loader
+    container.innerHTML = `
+      <div class="loader">
+        <p>Cargando productos...</p>
+      </div>
+    `;
 
+    // 3. Obtener productos
+    const products = await fetchProducts(categoria);
+    console.log('Productos obtenidos:', products);
+
+    // 4. Renderizar productos
     if (!products || products.length === 0) {
-      container.innerHTML = '<p>No hay productos disponibles.</p>';
+      container.innerHTML = `
+        <div class="no-products">
+          <p>No hay productos disponibles en esta categoría.</p>
+        </div>
+      `;
       return;
     }
 
-    renderProducts(container, products);
+    // 5. Limpiar contenedor y renderizar productos
+    container.innerHTML = '';
+    products.forEach(product => {
+      const productElement = createProductCard(product);
+      container.appendChild(productElement);
+    });
+
   } catch (error) {
-    console.error('Error al cargar productos:', error);
-    container.innerHTML = '<p>Error al cargar los productos. Por favor, intente nuevamente.</p>';
+    console.error('Error en loadProducts:', error);
+    const container = document.querySelector(`[data-tipo="${containerId}"]`);
+    if (container) {
+      container.innerHTML = `
+        <div class="error">
+          <p>Error al cargar los productos. Por favor, intente nuevamente.</p>
+        </div>
+      `;
+    }
   }
 };
 
-const renderProducts = (container, products) => {
-  container.innerHTML = '';
-  
-  products.forEach(product => {
-    const card = createProductCard(product);
-    container.appendChild(card);
-  });
+const fetchProducts = async (categoria) => {
+  try {
+    if (categoria) {
+      console.log('Solicitando productos de categoría:', categoria);
+      const categoryProducts = await productService.getProductsByCategory(categoria);
+      console.log('Productos de categoría obtenidos:', categoryProducts);
+      return categoryProducts;
+    } else {
+      console.log('Solicitando todos los productos');
+      const allProducts = await productService.productList();
+      console.log('Todos los productos obtenidos:', allProducts);
+      return allProducts;
+    }
+  } catch (error) {
+    console.error('Error en fetchProducts:', error);
+    throw error;
+  }
 };
 
 const createProductCard = (product) => {
-  const article = document.createElement('article');
-  article.className = 'mas-vistos__card';
+  const card = document.createElement('article');
+  card.className = 'mas-vistos__card';
   
-  article.innerHTML = `
+  card.innerHTML = `
     <img
       src="${product.imagen}"
       alt="${product.nombre}"
@@ -61,10 +86,10 @@ const createProductCard = (product) => {
       <p class="mas-vistos__card__price">$${product.precio}</p>
       <a
         class="mas-vistos__card__link"
-        href="../screens/descripcion-producto.html?id=${product.id}"
+        href="descripcion-producto.html?id=${product.id}"
       >Ver Producto</a>
     </div>
   `;
 
-  return article;
+  return card;
 };
