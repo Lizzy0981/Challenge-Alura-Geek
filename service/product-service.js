@@ -22,14 +22,22 @@ const productList = () => {
 };
 
 // Obtener productos por categoría
-const getProductsByCategory = (categoria) => {
-  console.log('Fetching products by category:', categoria);
-  return fetch(`${API_URL}/productos?categoria=${categoria}`)
-    .then(handleResponse)
-    .catch(error => {
-      console.error('Error fetching by category:', error);
-      throw error;
-    });
+const getProductsByCategory = async (categoria) => {
+  try {
+    // Primero obtenemos todos los productos
+    const allProducts = await productList();
+    
+    // Filtramos por categoría
+    const filteredProducts = allProducts.filter(product => 
+      product.categoria.toLowerCase() === categoria.toLowerCase()
+    );
+    
+    console.log(`Encontrados ${filteredProducts.length} productos en categoría ${categoria}`);
+    return filteredProducts;
+  } catch (error) {
+    console.error('Error en getProductsByCategory:', error);
+    throw error;
+  }
 };
 
 // Crear un producto
@@ -83,10 +91,10 @@ const getLimitProduct = () => {
 
 export const productService = {
   productList,
+  getProductsByCategory,
   createProduct,
   deleteProduct,
   productDetail,
   updateProduct,
-  getLimitProduct,
-  getProductsByCategory  // Agregamos la nueva función
+  getLimitProduct
 };
