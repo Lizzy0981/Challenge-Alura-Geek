@@ -4,34 +4,35 @@ export const loadProducts = async (containerId, categoria = null) => {
   console.log('LoadProducts llamado con:', { containerId, categoria });
   
   try {
-    // 1. Obtener el contenedor
     const container = document.querySelector(`[data-tipo="${containerId}"]`);
     if (!container) {
       throw new Error(`Contenedor no encontrado: ${containerId}`);
     }
 
-    // 2. Mostrar loader
+    // Mostrar loader
     container.innerHTML = `
       <div class="loader">
         <p>Cargando productos...</p>
       </div>
     `;
 
-    // 3. Obtener productos
-    const products = await fetchProducts(categoria);
+    // Obtener productos
+    let products;
+    if (categoria) {
+      products = await productService.getProductsByCategory(categoria);
+    } else {
+      products = await productService.productList();
+    }
+
     console.log('Productos obtenidos:', products);
 
-    // 4. Renderizar productos
+    // Validar si hay productos
     if (!products || products.length === 0) {
-      container.innerHTML = `
-        <div class="no-products">
-          <p>No hay productos disponibles en esta categoría.</p>
-        </div>
-      `;
+      container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
       return;
     }
 
-    // 5. Limpiar contenedor y renderizar productos
+    // Renderizar productos
     container.innerHTML = '';
     products.forEach(product => {
       const productElement = createProductCard(product);
@@ -51,25 +52,6 @@ export const loadProducts = async (containerId, categoria = null) => {
   }
 };
 
-const fetchProducts = async (categoria) => {
-  try {
-    if (categoria) {
-      console.log('Solicitando productos de categoría:', categoria);
-      const categoryProducts = await productService.getProductsByCategory(categoria);
-      console.log('Productos de categoría obtenidos:', categoryProducts);
-      return categoryProducts;
-    } else {
-      console.log('Solicitando todos los productos');
-      const allProducts = await productService.productList();
-      console.log('Todos los productos obtenidos:', allProducts);
-      return allProducts;
-    }
-  } catch (error) {
-    console.error('Error en fetchProducts:', error);
-    throw error;
-  }
-};
-
 const createProductCard = (product) => {
   const card = document.createElement('article');
   card.className = 'mas-vistos__card';
@@ -79,7 +61,6 @@ const createProductCard = (product) => {
       src="${product.imagen}"
       alt="${product.nombre}"
       class="mas-vistos__card__img"
-      onerror="this.src='../assets/img/producto-no-encontrado.png';"
     />
     <div class="mas-vistos__card__details">
       <h2 class="mas-vistos__card__name">${product.nombre}</h2>
