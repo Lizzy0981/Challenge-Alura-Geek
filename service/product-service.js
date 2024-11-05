@@ -19,15 +19,22 @@ const productList = async () => {
   }
 };
 
-// Nueva función específica para obtener productos por categoría
+// Función mejorada para obtener productos por categoría
 const getProductsByCategory = async (categoria) => {
   try {
     console.log('Buscando productos de categoría:', categoria);
-    const allProducts = await productList();
-    const filteredProducts = allProducts.filter(product => 
-      product.categoria.toLowerCase() === categoria.toLowerCase()
+    // Hacemos una petición directa con el filtro de categoría
+    const response = await fetch(`${API_URL}/productos?categoria=${categoria}`);
+    const products = await handleResponse(response);
+    
+    // Aseguramos que el filtrado sea caso-insensitivo y exacto
+    const filteredProducts = products.filter(product => 
+      product.categoria && product.categoria.toLowerCase() === categoria.toLowerCase()
     );
+    
     console.log('Productos filtrados:', filteredProducts);
+    console.log('Cantidad de productos encontrados:', filteredProducts.length);
+    
     return filteredProducts;
   } catch (error) {
     console.error('Error en getProductsByCategory:', error);
