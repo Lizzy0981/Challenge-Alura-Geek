@@ -1,125 +1,92 @@
 const API_URL = 'https://alurageek-api-odin.onrender.com';
 
 const handleResponse = async (response) => {
+  console.log('Status:', response.status);
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    const errorData = await response.json().catch(() => ({}));
+    console.error('Error Response:', errorData);
+    throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
   }
-  const data = await response.json();
-  return data;
+  return response.json();
 };
 
 // Obtener todos los productos
-const productList = async () => {
-  try {
-    const response = await fetch(`${API_URL}/productos`);
-    const data = await handleResponse(response);
-    console.log('Productos obtenidos:', data);
-    return data;
-  } catch (error) {
-    console.error('Error en productList:', error);
-    throw error;
-  }
+const productList = () => {
+  console.log('Fetching from:', `${API_URL}/productos`);
+  return fetch(`${API_URL}/productos`)
+    .then(handleResponse)
+    .catch(error => {
+      console.error('Error en productList:', error);
+      throw error;
+    });
 };
 
-// Función mejorada para obtener productos por categoría
-const getProductsByCategory = async (categoria) => {
-  try {
-    console.log('Buscando productos de categoría:', categoria);
-    // Primero obtenemos todos los productos
-    const allProducts = await productList();
-    
-    // Filtrado en el cliente
-    const filteredProducts = allProducts.filter(product => 
-      product.categoria && 
-      product.categoria.toLowerCase().trim() === categoria.toLowerCase().trim()
-    );
-    
-    console.log(`Encontrados ${filteredProducts.length} productos en la categoría ${categoria}`);
-    return filteredProducts;
-  } catch (error) {
-    console.error('Error en getProductsByCategory:', error);
-    throw error;
-  }
+// Obtener productos por categoría
+const getProductsByCategory = (categoria) => {
+  console.log('Fetching products by category:', categoria);
+  return fetch(`${API_URL}/productos?categoria=${categoria}`)
+    .then(handleResponse)
+    .catch(error => {
+      console.error('Error fetching by category:', error);
+      throw error;
+    });
 };
 
 // Crear un producto
-const createProduct = async (imagen, nombre, precio, categoria, descripcion) => {
-  try {
-    const response = await fetch(`${API_URL}/productos`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
-    });
-    return handleResponse(response);
-  } catch (error) {
-    console.error('Error en createProduct:', error);
-    throw error;
-  }
+const createProduct = (imagen, nombre, precio, categoria, descripcion) => {
+  return fetch(`${API_URL}/productos`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
+  }).then(handleResponse);
 };
 
 // Eliminar un producto
-const deleteProduct = async (id) => {
-  try {
-    const response = await fetch(`${API_URL}/productos/${id}`, {
-      method: 'DELETE'
-    });
-    return handleResponse(response);
-  } catch (error) {
-    console.error('Error en deleteProduct:', error);
-    throw error;
-  }
+const deleteProduct = (id) => {
+  return fetch(`${API_URL}/productos/${id}`, {
+    method: 'DELETE'
+  }).then(handleResponse);
 };
 
 // Obtener el detalle de un producto
-const productDetail = async (id) => {
-  try {
-    const response = await fetch(`${API_URL}/productos/${id}`);
-    return handleResponse(response);
-  } catch (error) {
-    console.error('Error en productDetail:', error);
-    throw error;
-  }
+const productDetail = (id) => {
+  return fetch(`${API_URL}/productos/${id}`).then(handleResponse);
 };
 
 // Actualizar un producto
-const updateProduct = async (imagen, nombre, precio, categoria, descripcion, id) => {
-  try {
-    const response = await fetch(`${API_URL}/productos/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
-    });
-    return handleResponse(response);
-  } catch (error) {
-    console.error('Error en updateProduct:', error);
-    throw error;
-  }
+const updateProduct = (imagen, nombre, precio, categoria, descripcion, id) => {
+  return fetch(`${API_URL}/productos/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({ imagen, nombre, precio, categoria, descripcion })
+  }).then(handleResponse);
 };
 
 // Obtener productos limitados
-const getLimitProduct = async () => {
-  try {
-    console.log('Fetching limited products...');
-    const response = await fetch(`${API_URL}/productos?_limit=4`);
-    const data = await handleResponse(response);
-    console.log('Received limited products:', data);
-    return data;
-  } catch (error) {
-    console.error('Error in getLimitProduct:', error);
-    throw error;
-  }
+const getLimitProduct = () => {
+  console.log('Fetching limited products...');
+  return fetch(`${API_URL}/productos?_limit=4`)
+    .then(handleResponse)
+    .then(data => {
+      console.log('Received limited products:', data);
+      return data;
+    })
+    .catch(error => {
+      console.error('Error in getLimitProduct:', error);
+      throw error;
+    });
 };
 
 export const productService = {
   productList,
-  getProductsByCategory,
   createProduct,
   deleteProduct,
   productDetail,
   updateProduct,
-  getLimitProduct
+  getLimitProduct,
+  getProductsByCategory  // Agregamos la nueva función
 };
