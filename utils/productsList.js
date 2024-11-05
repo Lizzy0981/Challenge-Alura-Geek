@@ -9,37 +9,15 @@ export const loadProducts = async (containerId, categoria = null) => {
     throw new Error('Contenedor no encontrado');
   }
 
-  container.innerHTML = `
-    <div class="loader">
-      <div class="scanner">
-        <h1 class="scanner__loading">Loading...</h1>
-      </div>
-    </div>
-  `;
+  // Mostrar loader
+  showLoader(container);
 
   try {
-    let products;
+    // Obtener productos
+    let products = await fetchProducts(categoria);
     
-    if (categoria) {
-      console.log('Solicitando productos de categoría:', categoria);
-      products = await productService.getProductsByCategory(categoria);
-    } else {
-      console.log('Solicitando todos los productos');
-      products = await productService.productList();
-    }
-
-    console.log('Productos recibidos:', products);
-
-    if (!products || products.length === 0) {
-      container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
-      return [];
-    }
-
-    container.innerHTML = '';
-    products.forEach(product => {
-      const productElement = createLineUserView(product.nombre, product.precio, product.id, product.imagen);
-      container.appendChild(productElement);
-    });
+    // Renderizar productos
+    renderProducts(container, products);
     
     return products;
   } catch (error) {
@@ -49,43 +27,44 @@ export const loadProducts = async (containerId, categoria = null) => {
   }
 };
 
-    // Verificar los productos antes de mostrarlos
-    console.log('Productos antes de filtrar:', products);
-
-    // Filtrar explícitamente por categoría
-    if (categoria) {
-      products = products.filter(product => {
-        console.log('Comparando:', {
-          productCategoria: product.categoria,
-          categoriaSeleccionada: categoria,
-          coincide: product.categoria.toLowerCase() === categoria.toLowerCase()
-        });
-        return product.categoria.toLowerCase() === categoria.toLowerCase();
-      });
-    }
-
-    console.log('Productos después de filtrar:', products); // Log después del filtrado
-
-    if (!products || products.length === 0) {
-      container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
-      return [];
-    }
-
-    // Ocultar el loader y mostrar los productos
-    container.innerHTML = '';
-    products.forEach(product => {
-      const productElement = createLineUserView(product.nombre, product.precio, product.id, product.imagen);
-      container.appendChild(productElement);
-    });
-    return products;
-  } catch (error) {
-    console.error('Error detallado al cargar los productos:', error);
-    container.innerHTML = '<p>Error al cargar los productos. Por favor, intente nuevamente.</p>';
-    throw error;
-  }
+const showLoader = (container) => {
+  container.innerHTML = `
+    <div class="loader">
+      <div class="scanner">
+        <h1 class="scanner__loading">Loading...</h1>
+      </div>
+    </div>
+  `;
 };
 
-// Función para crear una estructura article para mostrar los productos
+const fetchProducts = async (categoria) => {
+  let products;
+  
+  if (categoria) {
+    console.log('Solicitando productos de categoría:', categoria);
+    products = await productService.getProductsByCategory(categoria);
+  } else {
+    console.log('Solicitando todos los productos');
+    products = await productService.productList();
+  }
+
+  console.log('Productos recibidos:', products);
+  return products || [];
+};
+
+const renderProducts = (container, products) => {
+  if (!products || products.length === 0) {
+    container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
+    return;
+  }
+
+  container.innerHTML = '';
+  products.forEach(product => {
+    const productElement = createLineUserView(product.nombre, product.precio, product.id, product.imagen);
+    container.appendChild(productElement);
+  });
+};
+
 export const createLineUserView = (nombre, precio, id, imagen) => {
   const line = document.createElement('article');
   line.classList.add('mas-vistos__card');
