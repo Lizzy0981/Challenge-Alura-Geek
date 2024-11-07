@@ -18,19 +18,21 @@ export const loadProducts = async (containerId, categoria = null) => {
   `;
 
   try {
-    // Obtenemos todos los productos
-    const allProducts = await productService.productList();
+    let products;
+    
+    if (categoria) {
+      console.log('Solicitando productos de categoría:', categoria);
+      products = await productService.getProductsByCategory(categoria);
+    } else {
+      console.log('Solicitando todos los productos');
+      products = await productService.productList();
+    }
 
-    // Filtramos los productos según la categoría
-    const products = categoria 
-      ? allProducts.filter(product => product.categoria === categoria)
-      : allProducts;
-
-    console.log(`Mostrando ${products.length} productos de categoría: ${categoria || 'todas'}`);
+    console.log('Productos recibidos:', products);
 
     if (!products || products.length === 0) {
       container.innerHTML = '<p>No hay productos disponibles en esta categoría.</p>';
-      return;
+      return [];
     }
 
     container.innerHTML = '';
@@ -38,10 +40,12 @@ export const loadProducts = async (containerId, categoria = null) => {
       const productElement = createLineUserView(product.nombre, product.precio, product.id, product.imagen);
       container.appendChild(productElement);
     });
-
+    
+    return products;
   } catch (error) {
     console.error('Error al cargar los productos:', error);
     container.innerHTML = '<p>Error al cargar los productos. Por favor, intente nuevamente.</p>';
+    throw error;
   }
 };
 
@@ -54,6 +58,7 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
       src="${imagen}"
       alt="${nombre}"
       class="mas-vistos__card__img"
+      onerror="this.src='https://placehold.co/300x200/png?text=Producto'"
     />
     <div class="mas-vistos__card__details">
       <h2 class="mas-vistos__card__name">${nombre}</h2>
