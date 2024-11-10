@@ -36,6 +36,7 @@ const renderAllProducts = async () => {
 
     products.forEach(data => {
       const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen);
+      newLine.classList.add('visible'); // Agregar la clase visible
       div.appendChild(newLine);
     });
   } catch (error) {
