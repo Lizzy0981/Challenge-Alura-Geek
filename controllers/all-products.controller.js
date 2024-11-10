@@ -22,7 +22,7 @@ const renderAllProducts = async () => {
         <h1 class="scanner__loading">Loading...</h1>
       </div>
     </div>
-  `
+  `;
   div.innerHTML = loading;
 
   try {
@@ -35,13 +35,13 @@ const renderAllProducts = async () => {
     }
 
     products.forEach(data => {
-      const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
-      div.appendChild(newLine)
+      const newLine = createLineUserView(data.nombre, data.precio, data.id, data.imagen);
+      div.appendChild(newLine);
     });
   } catch (error) {
     handleError(error);
   }
-}
+};
 
 const handleError = (error) => {
   console.error('Error:', error);
