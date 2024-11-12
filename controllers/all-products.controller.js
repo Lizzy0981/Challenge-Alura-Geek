@@ -52,13 +52,12 @@ const handleError = (error) => {
     icon: 'error',
     confirmButtonText: 'Continuar'
   }).then(() => {
-    window.location.href = '../index.html'
+    window.location.href = '../index.html';
   });
-}
+};
 
-// Función para realizar el filtrado de datos
 searchInput.addEventListener('keyup', async () => {
-  const searchValue = searchInput.value.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase()
+  const searchValue = searchInput.value.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase();
   try {
     const products = await productService.productList();
     if (searchValue !== '' && searchValue !== null) {
@@ -66,23 +65,24 @@ searchInput.addEventListener('keyup', async () => {
       const newProducts = products.filter(product => 
         product.nombre.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().includes(searchValue) ||
         product.categoria.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().includes(searchValue)
-      )
+      );
       if (newProducts.length === 0) {
         Swal.fire({
           title: 'No se encontró el producto',
           text: 'El producto que busca no se encuentra',
           icon: 'error',
           confirmButtonText: 'Continuar'
-        })
+        });
       }
       newProducts.forEach(data => {
-        const line = createLineUserView(data.nombre, data.precio, data.id, data.imagen)
-        div.appendChild(line)
-      })
+        const line = createLineUserView(data.nombre, data.precio, data.id, data.imagen);
+        line.classList.add('visible'); // Agregar la clase visible
+        div.appendChild(line);
+      });
     } else {
       renderAllProducts();
     }
   } catch (error) {
     handleError(error);
   }
-})
+});
