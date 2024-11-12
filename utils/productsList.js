@@ -2,7 +2,7 @@ import { productService } from '../service/product-service.js';
 
 export const loadProducts = async (containerId, categoria = null) => {
   console.log('LoadProducts llamado con:', { containerId, categoria });
-  
+
   const container = document.querySelector(`[data-tipo="${containerId}"]`);
   if (!container) {
     console.error('Contenedor no encontrado:', containerId);
@@ -19,7 +19,7 @@ export const loadProducts = async (containerId, categoria = null) => {
 
   try {
     let products;
-    
+
     if (categoria) {
       console.log('Solicitando productos de categoría:', categoria);
       products = await productService.getProductsByCategory(categoria);
