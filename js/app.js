@@ -29,23 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const productContainer = document.querySelector('[data-tipo="productCards"]');
   
   if (productContainer) {
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname.toLowerCase();
     let categoria = null;
     
-    console.log('Path actual:', currentPath); // Log para ver la URL actual
+    console.log('Ruta actual:', currentPath);
 
-    if (currentPath.includes('diversos.html')) {
+    if (currentPath.includes('/screens/diversos.html')) {
       categoria = 'diversos';
-    } else if (currentPath.includes('consolas.html')) {
+    } else if (currentPath.includes('/screens/consolas.html')) {
       categoria = 'consolas';
-    } else if (currentPath.includes('star-wars.html')) {
+    } else if (currentPath.includes('/screens/star-wars.html')) {
       categoria = 'star-wars';
-    } else if (currentPath.includes('laptos.html')) {
+    } else if (currentPath.includes('/screens/laptos.html')) {
       categoria = 'laptos';
     }
-
-    console.log('Categoría detectada:', categoria); // Log para ver qué categoría se detectó
     
-    loadProducts('productCards', categoria);
+    console.log('Categoría detectada:', categoria);
+    
+    if (categoria) {
+      loadProducts('productCards', categoria);
+    } else {
+      loadProducts('productCards');
+    }
   }
 });
