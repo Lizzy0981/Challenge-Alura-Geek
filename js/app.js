@@ -26,7 +26,6 @@ if (textareaDescripcion) {
 
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  // Corregido: usar data-tipo en lugar de tipo
   const productContainer = document.querySelector('[data-tipo="productCards"]');
   
   if (productContainer) {
@@ -48,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Categoría detectada:', categoria);
     
     if (categoria) {
+      // Si estamos en una página de categoría
       console.log('Cargando productos de categoría:', categoria);
       loadProducts('productCards', categoria)
         .then(products => {
@@ -57,13 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error(`Error al cargar productos de ${categoria}:`, error);
         });
     } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
-      console.log('Cargando productos para página principal');
-      loadProducts('productCards')
+      // Si estamos en la página principal, cargar solo productos destacados
+      console.log('Cargando productos destacados');
+      loadProducts('productCards', 'destacados')
         .then(products => {
-          console.log('Productos cargados:', products);
+          console.log('Productos destacados cargados:', products);
         })
         .catch(error => {
-          console.error('Error al cargar productos:', error);
+          console.error('Error al cargar productos destacados:', error);
         });
     }
   }
