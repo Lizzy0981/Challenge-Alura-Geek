@@ -115,11 +115,9 @@ body {
 
 /* Estilos para la sección "más vistos" */
 .mas-vistos__card {
-  opacity: 1;
   background: white;
-  border-radius: 4px;
   padding: 1rem;
-  margin-bottom: 1rem;
+  border-radius: 4px;
   transition: transform 0.3s ease;
 }
 
@@ -134,26 +132,26 @@ body {
 }
 
 .mas-vistos__card__details {
-  padding: 0.5rem 0;
+  color: black;
 }
 
 .mas-vistos__card__name {
-  color: var(--color-black);
-  margin-bottom: 0.5rem;
+  color: black;
+  margin: 0.5rem 0;
 }
 
 .mas-vistos__card__price {
-  color: var(--color-black);
+  color: black;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .mas-vistos__card__link {
-  color: var(--color-blue-links);
+  display: inline-block;
+  color: #2A7AE4;
   text-decoration: none;
   font-weight: 500;
-  display: inline-block;
-  padding: 0.5rem 0;
+  margin-top: 0.5rem;
 }
 
 .mas-vistos__card__link:hover {
