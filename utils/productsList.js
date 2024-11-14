@@ -79,7 +79,7 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
     <div class="mas-vistos__card__details">
       <h2 class="mas-vistos__card__name">${nombre}</h2>
       <p class="mas-vistos__card__price">$${precio}</p>
-      <a
+      
         class="mas-vistos__card__link"
         href="../screens/descripcion-producto.html?id=${id}"
       >Ver Producto</a>
@@ -87,12 +87,7 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
   `;
 
   line.innerHTML = content;
-
-  // Añadir una pequeña demora para permitir que las animaciones se apliquen
-  setTimeout(() => {
-    line.style.opacity = '1';
-    line.style.transform = 'translateY(0)';
-  }, 50);
-
+  line.style.opacity = '1';
+  
   return line;
-}; 
+};
