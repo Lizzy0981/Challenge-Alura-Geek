@@ -87,7 +87,6 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
   `;
 
   line.innerHTML = content;
-  line.style.opacity = '1';
   
   return line;
 };
