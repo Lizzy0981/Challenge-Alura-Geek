@@ -24,34 +24,25 @@ if (textareaDescripcion) {
   addValidation(textareaDescripcion, validaText);
 }
 
-// Función para manejar el clic en los enlaces de categorías
-const handleCategoryClick = () => {
-  const categoryLinks = document.querySelectorAll('[data-categoria]');
-  
+// Manejar clicks en las categorías
+const handleCategoryClicks = () => {
+  const categoryLinks = document.querySelectorAll('.categoria__card a[categoria]');
   categoryLinks.forEach(link => {
     link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const categoria = event.currentTarget.dataset.categoria;
-      const productContainer = document.querySelector('[data-tipo="productCards"]');
-      
-      if (productContainer) {
-        console.log('Cargando productos de categoría:', categoria);
-        loadProducts('productCards', categoria);
-      }
+      const categoria = event.currentTarget.getAttribute('categoria');
+      console.log('Navegando a categoría:', categoria);
     });
   });
 };
 
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  const productContainer = document.querySelector('[data-tipo="productCards"]');
+  const productContainer = document.querySelector('[tipo="productCards"]');
   
   if (productContainer) {
     const currentPath = window.location.pathname.toLowerCase();
     let categoria = null;
     
-    console.log('Ruta actual:', currentPath);
-
     if (currentPath.includes('/screens/diversos.html')) {
       categoria = 'diversos';
     } else if (currentPath.includes('/screens/consolas.html')) {
@@ -65,12 +56,14 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Categoría detectada:', categoria);
     
     if (categoria) {
+      // Si estamos en una página de categoría
       loadProducts('productCards', categoria);
-    } else {
-      loadProducts('productCards');
+    } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
+      // Si estamos en la página principal, solo cargamos productos destacados
+      loadProducts('productCards', 'destacados');
     }
   }
 
-  // Inicializar el manejador de clics en categorías
-  handleCategoryClick();
+  // Inicializar los click handlers para las categorías
+  handleCategoryClicks();
 });
