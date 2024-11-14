@@ -2,43 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta
-      http-equiv="X-UA-Compatible"
-      content="IE=edge">
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge AluraGeek</title>
     <!-- BASE STYLE -->
-    <link
-      rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
     <!-- GOOGLE FONTS -->
-    <link
-      rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-      rel="preconnect" href="https://fonts.gstatic.com"
-      crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet">
     <!-- ICONSCOUT -->
-    <link
-      rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-      <link 
-      rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- PAGE STYLES -->
-    <link
-      rel="stylesheet" href="./assets/css/header/header.css">
-    <link
-      rel="stylesheet" href="./assets/css/banner/banner.css">
-    <link
-      rel="stylesheet" href="./assets/css/categorias/categorias.css">
+    <link rel="stylesheet" href="./assets/css/header/header.css">
+    <link rel="stylesheet" href="./assets/css/banner/banner.css">
+    <link rel="stylesheet" href="./assets/css/categorias/categorias.css">
     <link rel="stylesheet" href="./assets/css/loading/loading.css">
-    <link
-      rel="stylesheet" href="./assets/css/productos/productos.css">
-    <link
-      rel="stylesheet" href="./assets/css/footer/footer.css">
-      <link rel="icon" href="favicon.svg">
+    <link rel="stylesheet" href="./assets/css/productos/productos.css">
+    <link rel="stylesheet" href="./assets/css/footer/footer.css">
+    <link rel="icon" href="favicon.svg">
       <style>
         body {
             background-image: url('../assets/img/fondopagina.jpg') !important;
@@ -103,72 +87,58 @@
         </article>
       </section>
       <!-- TARJETAS CATEGORIAS -->
-      <section class="categorias container">
-        <h1 class="categorias__title">Categorías</h1>
+      <section class="section categorias container">
+        <h2 class="categorias__title">Categorías</h2>
         <div class="categorias__cards">
-          <article class="categoria__card">
-            <a href="./screens/diversos.html">
-              <img
-                class="categoria__card__img"
-                src="./assets/img/productos/banner-productos/banner2.jpg"
-                alt="" />
+          <!-- Diversos -->
+          <div class="categoria__card">
+            <a href="./screens/diversos.html" data-categoria="diversos">
+              <img src="./assets/img/productos/banner-productos/banner2.jpg" class="categoria__card__img" alt="Diversos">
               <div class="categoria__card__details">
-                <h2 class="categoria__card__details__title">Diversos</h2>
-                <p class="categoria__card__details__subtitle">
-                  Accesorios - Libros - Playeras - Peluches - Entre otros
-                </p>
+                <h3 class="categoria__card__details__title">Diversos</h3>
+                <p>Accesorios - Libros - Playeras - Peluches - Entre otros</p>
               </div>
             </a>
-          </article>
-          <article class="categoria__card">
-            <a href="./screens/consolas.html">
-              <img
-                class="categoria__card__img"
-                src="./assets/img/productos/banner-productos/banner3.jpg"
-                alt="" />
+          </div>
+
+          <!-- Consolas -->
+          <div class="categoria__card">
+            <a href="./screens/consolas.html" data-categoria="consolas">
+              <img src="./assets/img/productos/banner-productos/banner3.jpg" class="categoria__card__img" alt="Consolas">
               <div class="categoria__card__details">
-                <h2 class="categoria__card__details__title">Consolas</h2>
-                <p class="categoria__card__details__subtitle">
-                  PSP - Xbox Series X - PlayStation 5 - Entre otros
-                </p>
+                <h3 class="categoria__card__details__title">Consolas</h3>
+                <p>PSP - Xbox Series X - PlayStation 5 - Entre otros</p>
               </div>
             </a>
-          </article>
-          <article class="categoria__card">
-            <a href="./screens/star-wars.html">
-              <img
-                class="categoria__card__img"
-                src="./assets/img/productos/banner-productos/banner4.jpg"
-                alt="" />
+          </div>
+
+          <!-- Star Wars -->
+          <div class="categoria__card">
+            <a href="./screens/star-wars.html" data-categoria="star-wars">
+              <img src="./assets/img/productos/banner-productos/banner4.jpg" class="categoria__card__img" alt="Star Wars">
               <div class="categoria__card__details">
-                <h2 class="categoria__card__details__title">Star Wars</h2>
-                <p class="categoria__card__details__subtitle">
-                  Grogu Vinil - Clone Tooper - Sable de Luz ForceFX -
-                  Entre otros
-                </p>
+                <h3 class="categoria__card__details__title">Star Wars</h3>
+                <p>Grogu Vinil - Clone Tooper - Sable de Luz ForceFX - Entre otros</p>
               </div>
             </a>
-          </article>
-          <article class="categoria__card">
-            <a href="./screens/laptos.html">
-              <img
-                class="categoria__card__img"
-                src="./assets/img/productos/banner-productos/banner5.jpg"
-                alt="" />
+          </div>
+
+          <!-- Laptops -->
+          <div class="categoria__card">
+            <a href="./screens/laptos.html" data-categoria="laptos">
+              <img src="./assets/img/productos/banner-productos/banner5.jpg" class="categoria__card__img" alt="Laptops">
               <div class="categoria__card__details">
-                <h2 class="categoria__card__details__title">Laptos</h2>
-                <p class="categoria__card__details__subtitle">
-                  Lenovo - DELL - HUAWEI - HP -  Entre otros
-                </p>
+                <h3 class="categoria__card__details__title">Laptops</h3>
+                <p>Lenovo - DELL - HUAWEI - HP - Entre otros</p>
               </div>
             </a>
-          </article>
+          </div>
         </div>
       </section>
 
-      <!-- PRODUCTOS MAS VISTOS -->
-      <section class="mas-vistos container">
-        <h1 class="mas-vistos__title">Productos más vistos</h1>
+      <!-- Sección de Productos más vistos -->
+      <section class="section mas-vistos container">
+        <h2 class="mas-vistos__title">Productos más vistos</h2>
         <div class="mas-vistos__cards" data-tipo="productCards"></div>
       </section>
     </main>
