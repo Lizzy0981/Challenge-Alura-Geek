@@ -15,6 +15,7 @@ export const loadProducts = async (containerId, categoria = null) => {
   try {
     // Obtener productos
     let products = await fetchProducts(categoria);
+    console.log('Productos obtenidos:', products);
     
     // Renderizar productos
     renderProducts(container, products);
@@ -38,18 +39,33 @@ const showLoader = (container) => {
 };
 
 const fetchProducts = async (categoria) => {
-  let products;
-  
-  if (categoria) {
-    console.log('Solicitando productos de categoría:', categoria);
-    products = await productService.getProductsByCategory(categoria);
-  } else {
-    console.log('Solicitando todos los productos');
-    products = await productService.productList();
-  }
+  try {
+    let products;
+    
+    if (categoria) {
+      console.log('Solicitando productos de categoría:', categoria);
+      // Asegurarse de que la categoría esté en minúsculas para la comparación
+      const categoriaLower = categoria.toLowerCase();
+      if (categoriaLower === 'laptos' || 
+          categoriaLower === 'diversos' || 
+          categoriaLower === 'consolas' || 
+          categoriaLower === 'star-wars') {
+        products = await productService.getProductsByCategory(categoriaLower);
+      } else {
+        console.error('Categoría no válida:', categoria);
+        return [];
+      }
+    } else {
+      console.log('Solicitando todos los productos');
+      products = await productService.productList();
+    }
 
-  console.log('Productos recibidos:', products);
-  return products || [];
+    console.log('Productos recibidos:', products);
+    return products || [];
+  } catch (error) {
+    console.error('Error en fetchProducts:', error);
+    throw error;
+  }
 };
 
 const renderProducts = (container, products) => {
