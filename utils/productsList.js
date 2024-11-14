@@ -42,7 +42,13 @@ const fetchProducts = async (categoria) => {
   try {
     let products;
     
-    if (categoria) {
+    if (categoria === 'destacados') {
+      // Para la página principal, mostrar solo 6 productos destacados
+      console.log('Solicitando productos destacados');
+      products = await productService.productList();
+      // Tomar solo los primeros 6 productos
+      products = products.slice(0, 6);
+    } else if (categoria) {
       console.log('Solicitando productos de categoría:', categoria);
       // Asegurarse de que la categoría esté en minúsculas para la comparación
       const categoriaLower = categoria.toLowerCase();
