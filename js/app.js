@@ -24,6 +24,24 @@ if (textareaDescripcion) {
   addValidation(textareaDescripcion, validaText);
 }
 
+// Función para manejar el clic en los enlaces de categorías
+const handleCategoryClick = () => {
+  const categoryLinks = document.querySelectorAll('[data-categoria]');
+  
+  categoryLinks.forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const categoria = event.currentTarget.dataset.categoria;
+      const productContainer = document.querySelector('[data-tipo="productCards"]');
+      
+      if (productContainer) {
+        console.log('Cargando productos de categoría:', categoria);
+        loadProducts('productCards', categoria);
+      }
+    });
+  });
+};
+
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
   const productContainer = document.querySelector('[data-tipo="productCards"]');
@@ -52,4 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       loadProducts('productCards');
     }
   }
+
+  // Inicializar el manejador de clics en categorías
+  handleCategoryClick();
 });
