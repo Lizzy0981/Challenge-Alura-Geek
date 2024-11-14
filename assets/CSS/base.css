@@ -115,14 +115,49 @@ body {
 
 /* Estilos para la sección "más vistos" */
 .mas-vistos__card {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 1;
+  background: white;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
 }
 
-.mas-vistos__card.visible {
-  opacity: 1;
-  transform: translateY(0);
+.mas-vistos__card:hover {
+  transform: translateY(-5px);
+}
+
+.mas-vistos__card__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mas-vistos__card__details {
+  padding: 0.5rem 0;
+}
+
+.mas-vistos__card__name {
+  color: var(--color-black);
+  margin-bottom: 0.5rem;
+}
+
+.mas-vistos__card__price {
+  color: var(--color-black);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.mas-vistos__card__link {
+  color: var(--color-blue-links);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  padding: 0.5rem 0;
+}
+
+.mas-vistos__card__link:hover {
+  text-decoration: underline;
 }
 
 @media screen and (min-width: 1024px) {
