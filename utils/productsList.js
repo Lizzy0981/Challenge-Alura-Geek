@@ -69,24 +69,18 @@ export const createLineUserView = (nombre, precio, id, imagen) => {
   const line = document.createElement('article');
   line.classList.add('mas-vistos__card');
 
-  const content = `
+  line.innerHTML = `
     <img
       src="${imagen}"
       alt="${nombre}"
       class="mas-vistos__card__img"
-      onerror="this.src='path/to/fallback-image.jpg';"
     />
     <div class="mas-vistos__card__details">
       <h2 class="mas-vistos__card__name">${nombre}</h2>
       <p class="mas-vistos__card__price">$${precio}</p>
-      
-        class="mas-vistos__card__link"
-        href="../screens/descripcion-producto.html?id=${id}"
-      >Ver Producto</a>
+      <a href="../screens/descripcion-producto.html?id=${id}" class="mas-vistos__card__link">Ver Producto</a>
     </div>
   `;
 
-  line.innerHTML = content;
-  
   return line;
 };
