@@ -24,46 +24,47 @@ if (textareaDescripcion) {
   addValidation(textareaDescripcion, validaText);
 }
 
-// Manejar clicks en las categorías
-const handleCategoryClicks = () => {
-  const categoryLinks = document.querySelectorAll('.categoria__card a[categoria]');
-  categoryLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-      const categoria = event.currentTarget.getAttribute('categoria');
-      console.log('Navegando a categoría:', categoria);
-    });
-  });
-};
-
 // Cargar productos cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
-  const productContainer = document.querySelector('[tipo="productCards"]');
+  // Corregido: usar data-tipo en lugar de tipo
+  const productContainer = document.querySelector('[data-tipo="productCards"]');
   
   if (productContainer) {
     const currentPath = window.location.pathname.toLowerCase();
     let categoria = null;
     
-    if (currentPath.includes('/screens/diversos.html')) {
+    console.log('Ruta actual:', currentPath);
+
+    if (currentPath.includes('/screens/diversos')) {
       categoria = 'diversos';
-    } else if (currentPath.includes('/screens/consolas.html')) {
+    } else if (currentPath.includes('/screens/consolas')) {
       categoria = 'consolas';
-    } else if (currentPath.includes('/screens/star-wars.html')) {
+    } else if (currentPath.includes('/screens/star-wars')) {
       categoria = 'star-wars';
-    } else if (currentPath.includes('/screens/laptos.html')) {
+    } else if (currentPath.includes('/screens/laptos')) {
       categoria = 'laptos';
     }
     
     console.log('Categoría detectada:', categoria);
     
     if (categoria) {
-      // Si estamos en una página de categoría
-      loadProducts('productCards', categoria);
+      console.log('Cargando productos de categoría:', categoria);
+      loadProducts('productCards', categoria)
+        .then(products => {
+          console.log(`Productos cargados para ${categoria}:`, products);
+        })
+        .catch(error => {
+          console.error(`Error al cargar productos de ${categoria}:`, error);
+        });
     } else if (currentPath === '/' || currentPath.endsWith('index.html')) {
-      // Si estamos en la página principal, solo cargamos productos destacados
-      loadProducts('productCards', 'destacados');
+      console.log('Cargando productos para página principal');
+      loadProducts('productCards')
+        .then(products => {
+          console.log('Productos cargados:', products);
+        })
+        .catch(error => {
+          console.error('Error al cargar productos:', error);
+        });
     }
   }
-
-  // Inicializar los click handlers para las categorías
-  handleCategoryClicks();
 });
