@@ -4,44 +4,41 @@ const formLogin = document.querySelector('[data-tipo="formLogin"]')
 
 formLogin.addEventListener('submit', async (e) => {
   e.preventDefault()
-  const email = document.querySelector('[data-tipo="email"]').value
-  const password = document.querySelector('[data-tipo="password"]').value
+  
+  const email = document.querySelector('#email').value
+  const password = document.querySelector('#password').value
 
   try {
+    console.log('Intentando login con:', email) // Para debugging
     const admins = await adminService.adminList()
-    // Variable para verificar si encontramos un admin válido
-    let adminEncontrado = false;
+    let adminFound = false
 
-    // Verificar cada admin
-    for (const admin of admins) {
+    admins.forEach(admin => {
+      console.log('Comparando con admin:', admin.email) // Para debugging
       if (admin.email === email && admin.password === password) {
-        adminEncontrado = true;
-        window.location.href = '../screens/lista-productos-admin.html';
-        break; // Salir del loop si encontramos un match
+        adminFound = true
       }
-    }
+    })
 
-    // Si no encontramos un admin válido
-    if (!adminEncontrado) {
+    if (adminFound) {
+      console.log('Login exitoso') // Para debugging
+      window.location.href = './lista-productos-admin.html'
+    } else {
+      console.log('Credenciales incorrectas') // Para debugging
       Swal.fire({
-        title: 'No es administrador',
-        text: 'Debe usar el formulario de Contacto para comunicarse con el administrador de la página',
+        title: 'Error de acceso',
+        text: 'Email o contraseña incorrectos',
         icon: 'error',
-        confirmButtonText: 'Continuar'
-      }).then(() => {
-        window.location.href = '../screens/login.html'
-      });
+        confirmButtonText: 'Intentar nuevamente'
+      })
     }
-
   } catch (error) {
-    console.error('Error al verificar credenciales:', error);
+    console.error('Error durante el login:', error)
     Swal.fire({
       title: 'Hubo un error!!!',
-      text: 'Se produjo un error al verificar las credenciales. Intente más tarde',
+      text: 'Se produjo un error al intentar iniciar sesión. Por favor, intente más tarde',
       icon: 'error',
       confirmButtonText: 'Continuar'
-    }).then(() => {
-      window.location.href = '../index.html'
-    });
+    })
   }
-});
+})
