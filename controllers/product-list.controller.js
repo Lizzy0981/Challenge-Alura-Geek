@@ -48,7 +48,7 @@ const createLine = (nombre, precio, id, imagen) => {
         icon: 'success',
         confirmButtonText: 'Continuar'
       }).then(() => {
-        window.location.href = '../screens/lista-productos-admin.html'
+        render() // Recargar productos en lugar de recargar la página
       })
     } catch (error) {
       console.error("Error al eliminar:", error)
@@ -76,26 +76,27 @@ const render = async () => {
     </div>
   `
   newDiv.innerHTML = loading
+  div.innerHTML = ''
   div.appendChild(newDiv)
 
   try {
-    console.log("Intentando cargar productos...")
-    const productList = await loadProducts()
-    console.log("Productos cargados:", productList)
-    
+    console.log("Cargando productos...")
+    const productList = await loadProducts('tarjetas') // Usar loadProducts con el ID correcto
+    console.log("Productos obtenidos:", productList)
+
+    div.innerHTML = ''
     if (!productList || productList.length === 0) {
-      console.log("No se encontraron productos")
       div.innerHTML = '<p>No hay productos disponibles.</p>'
       return
     }
 
-    div.replaceChildren()
     productList.forEach(data => {
       const newLine = createLine(data.nombre, data.precio, data.id, data.imagen)
       div.appendChild(newLine)
     })
   } catch (error) {
     console.error("Error en render:", error)
+    div.innerHTML = ''
     Swal.fire({
       title: 'Hubo un error!!!',
       text: 'Se produjo un error al cargar los productos. Intente más tarde',
@@ -105,7 +106,6 @@ const render = async () => {
   }
 }
 
-// Inicialización
 document.addEventListener('DOMContentLoaded', () => {
   console.log("Página cargada, iniciando render...")
   render()
@@ -115,13 +115,13 @@ searchInput?.addEventListener('keyup', async () => {
   if (!verificarAuth()) return
 
   try {
-    const products = await loadProducts()
-    const searchValue = searchInput.value.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase()
+    const products = await loadProducts('tarjetas')
+    const searchValue = searchInput.value.toLowerCase().trim()
     
-    if (searchValue !== '') {
-      div.replaceChildren()
+    if (searchValue) {
+      div.innerHTML = ''
       const newProducts = products.filter(product => 
-        product.nombre.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().includes(searchValue)
+        product.nombre.toLowerCase().includes(searchValue)
       )
       
       if (newProducts.length === 0) {
@@ -138,7 +138,6 @@ searchInput?.addEventListener('keyup', async () => {
         div.appendChild(line)
       })
     } else {
-      div.replaceChildren()
       render()
     }
   } catch (error) {
