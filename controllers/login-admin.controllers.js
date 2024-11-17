@@ -1,14 +1,17 @@
 import { adminService } from '../service/admins-service.js'
 
-const formLogin = document.querySelector('[data-tipo="formLogin"]')
+const formLogin = document.querySelector('form')
+if (!formLogin) {
+  console.error('No se encontró el formulario de login')
+}
 
 formLogin.addEventListener('submit', async (e) => {
   e.preventDefault()
 
-  const email = document.querySelector('[data-tipo="email"]').value
-  const password = document.querySelector('[data-tipo="password"]').value
+  const email = document.querySelector('[type="email"]').value
+  const password = document.querySelector('[type="password"]').value
 
-  // Validación básica de campos
+  // Validación básica
   if (!email || !password) {
     Swal.fire({
       title: 'Error',
@@ -20,35 +23,36 @@ formLogin.addEventListener('submit', async (e) => {
   }
 
   try {
-    // Verificar conexión al API
+    // Verificar conexión
     const isApiAvailable = await adminService.checkApiHealth()
     if (!isApiAvailable) {
       throw new Error('API no disponible')
     }
 
-    // Intentar login
-    const loginResponse = await adminService.login(email, password)
+    // Obtener lista de admins y verificar credenciales
+    const admins = await adminService.adminList()
+    console.log('Verificando credenciales...')
+    
+    const adminValid = admins.some(admin => 
+      admin.email.toLowerCase() === email.toLowerCase() && 
+      admin.password === password
+    )
 
-    if (loginResponse.success) {
-      // Si el backend envía un token, lo guardamos
-      if (loginResponse.token) {
-        localStorage.setItem('adminToken', loginResponse.token)
-      }
-
-      // Guardar información de la sesión
+    if (adminValid) {
+      // Guardar sesión
       sessionStorage.setItem('adminData', JSON.stringify({
         email: email,
         isLoggedIn: true
       }))
-
-      // Redireccionar a la página de productos
+      
+      console.log('Login exitoso')
       window.location.href = './lista-productos-admin.html'
     } else {
       throw new Error('credenciales_invalidas')
     }
 
   } catch (error) {
-    console.error('Error en login:', error)
+    console.error('Error en login:', error.message)
     
     let mensaje = 'Ocurrió un error al intentar iniciar sesión. Por favor, intente más tarde.'
     
