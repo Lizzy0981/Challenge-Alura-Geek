@@ -8,18 +8,12 @@ const handleResponse = async (response) => {
   return response.json();
 };
 
-const login = async (email, password) => {
+const adminList = async () => {
   try {
-    const response = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password })
-    });
+    const response = await fetch(`${API_URL}/admins`);
     return handleResponse(response);
   } catch (error) {
-    console.error('Error en login:', error);
+    console.error('Error al obtener admins:', error);
     throw error;
   }
 };
@@ -35,6 +29,6 @@ const checkApiHealth = async () => {
 };
 
 export const adminService = {
-  login,
+  adminList,
   checkApiHealth
 };
