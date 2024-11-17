@@ -72,45 +72,44 @@
       <h1>Iniciar Sesión</h1>
   </div>
   <form 
-      action="./lista-productos-admin.html"
-      class="form-inicio"
-      data-tipo="formLogin"
-  >
-      <fieldset>
-          <div class="input__inicio__container">
-              <input
-                  class="input__inicio"
-                  id="email"
-                  type="email"
-                  data-tipo="email"
-                  name="email"
-                  placeholder="email"
-                  required
-              />
-              <label 
-                  class="input__label"
-                  for="email"
-              >Correo Electrónico</label>
-              <span class="input-message-error"></span>
-          </div>
-          <div class="input__inicio__container">
-              <input
-                  class="input__inicio"
-                  id="password"
-                  placeholder="password"
-                  type="password"
-                  data-tipo="password"
-                  required
-              />
-              <label 
-                  class="input__label"
-                  for="password"
-              >Contraseña</label>
-              <span class="input-message-error"></span>
-          </div>
-      </fieldset>
-      <button class="btn btn__center">Ingresar</button>
-  </form>
+    class="form-inicio"
+    data-tipo="formLogin">
+    <fieldset>
+        <div class="input__inicio__container">
+            <input
+                class="input__inicio"
+                id="email"
+                type="email"
+                data-tipo="email"
+                name="email"
+                placeholder="Escriba su correo electrónico"
+                required
+            />
+            <label 
+                class="input__label"
+                for="email"
+            >Correo Electrónico</label>
+            <span class="input-message-error"></span>
+        </div>
+        <div class="input__inicio__container">
+            <input
+                class="input__inicio"
+                id="password"
+                type="password"
+                data-tipo="password"
+                name="password"
+                placeholder="Escriba su contraseña"
+                required
+            />
+            <label 
+                class="input__label"
+                for="password"
+            >Contraseña</label>
+            <span class="input-message-error"></span>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn__center">Ingresar</button>
+</form>
 </section>
 </main>
     <!-- FOOTER -->
@@ -195,3 +194,4 @@
     <script src="../js/styled.js"></script>
   </body>
 </html>
+
